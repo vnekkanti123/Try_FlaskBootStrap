@@ -3,23 +3,24 @@ import requests, random
 
 base_url = "https://wowkhazanabackend.onrender.com/"
 
+# Backend functions
 def get_username(phone_number):
-    print("phone_number", phone_number)
     url = f"{base_url}getUserCredintials"
     headers = {'Content-Type': 'application/json'}
-    payload = {"phone_number": 9390680742}
-    
+    payload = {"mobileNumber": phone_number}
     response = requests.post(url, headers=headers, json=payload)
     
     if response.status_code == 200:
         return 1, response.json()
     elif response.status_code == 401:
-       pass
+        print("Unauthorized access")  
+        return 0, {"error": "Unauthorized access"}
     else:
+        print(f"Error: {response.status_code}")  
         response.raise_for_status()
 
 def do_user_login(data):
-    url = f"{base_url}login"
+    url = f"{base_url}userLogin"
     headers = {'Content-Type': 'application/json'}
     response = requests.post(url, headers=headers, json=data)
     
@@ -32,7 +33,7 @@ def do_user_login(data):
 
 
 def get_wallet(data,jwt_token):
-    url = f"{base_url}get_wallet"
+    url = f"{base_url}getWalletBallance"
     headers = {
         'Content-Type': 'application/json',
         'Authorization': f'Bearer {jwt_token}'}

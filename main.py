@@ -1,9 +1,10 @@
-from flask import Flask, render_template, redirect, url_for, session
+from flask import Flask, render_template, redirect, url_for, session, request
 from flask_bootstrap import Bootstrap5
 from wtforms import TelField, PasswordField, StringField, SubmitField
 from wtforms.validators import DataRequired, Length
 from flask_wtf import FlaskForm
 import requests
+from backend import *
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your_secret_key_here'  # Replace with your actual secret key
@@ -20,34 +21,6 @@ class PasswordForm(FlaskForm):
     username = StringField('Username', render_kw={'readonly': True})
     password = PasswordField('Password', validators=[DataRequired(), Length(8, 150)])
     submit = SubmitField()
-
-# Backend functions
-def get_username(phone_number):
-    url = f"{base_url}getUserCredintials"
-    headers = {'Content-Type': 'application/json'}
-    payload = {"mobileNumber": phone_number}
-    response = requests.post(url, headers=headers, json=payload)
-    
-    if response.status_code == 200:
-        return 1, response.json()
-    elif response.status_code == 401:
-        print("Unauthorized access")  
-        return 0, {"error": "Unauthorized access"}
-    else:
-        print(f"Error: {response.status_code}")  
-        response.raise_for_status()
-
-def do_user_login(data):
-    url = f"{base_url}userLogin"
-    headers = {'Content-Type': 'application/json'}
-    response = requests.post(url, headers=headers, json=data)
-    
-    if response.status_code == 200:
-        return 1, response.json()
-    elif response.status_code == 401:
-       pass
-    else:
-        response.raise_for_status()
 
 # Flask routes
 @app.route('/', methods=['GET', 'POST'])
@@ -76,15 +49,23 @@ def password():
         status, login_response = do_user_login(login_data)
         if status:
             session['access_token'] = login_response.get('access_token')
-            return redirect(url_for('success'))
+            return redirect(url_for('home'))
     return render_template('password.html', form=form)
 
-@app.route('/success', methods=['GET'])
-def success():
+@app.route('/home', methods=['GET'])
+def home():
     token = session.get('access_token')
     if not token:
         return redirect(url_for('login'))
     return render_template('home.html')
+
+@app.route('/history', methods=['GET'])
+def history():
+    return render_template('history.html')
+
+@app.route('/self_recharge', methods=['GET'])
+def self_recharge():
+    return render_template('self_recharge.html')
 
 @app.route('/logout')
 def logout():
@@ -92,6 +73,22 @@ def logout():
     session.pop('username', None)
     return redirect(url_for('login'))
 
+@app.route('/payout', methods=['GET', 'POST'])
+def payout():
+    token = session.get('access_token')
+    if not token:
+        return redirect(url_for('login'))
+    file = {"username" : session.get('username')}
+    info = get_wallet(file,session.get('access_token'))  
+    wallet_balance = info[1]['payout_wallet']
+    if request.method == 'POST':
+        mobile_number = request.form.get('mobile_number')
+        bank_account_number = request.form.get('bank_account_number')
+        ifsc_code = request.form.get('ifsc_code')
+        amount = request.form.get('amount')
+        name = request.form.get('name')
+    return render_template('payout.html', wallet_balance=wallet_balance)
+
+
 if __name__ == '__main__':
-    base_url = "https://wowkhazanabackend.onrender.com/"
-    app.run(host='0.0.0.0', port=8000)
+    app.run(host='0.0.0.0', port=8080)
