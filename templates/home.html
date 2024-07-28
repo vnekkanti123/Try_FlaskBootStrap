@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Home</title>
+    {{ bootstrap.load_css() }}
+    <style>
+        body {
+            display: flex;
+            transition: margin-left .3s;
+        }
+        .sidebar {
+            height: 100vh;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #343a40;
+            padding-top: 20px;
+            transition: width .3s;
+        }
+        .sidebar a {
+            padding: 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #fff;
+            display: block;
+        }
+        .sidebar a:hover {
+            background-color: #495057;
+        }
+        .main-content {
+            margin-left: 250px; /* Same as the width of the sidebar */
+            padding: 20px;
+            transition: margin-left .3s;
+        }
+        .sidebar-toggle {
+            font-size: 30px;
+            cursor: pointer;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: #fff;
+        }
+        .hidden-sidebar {
+            width: 0;
+        }
+        .hidden-sidebar + .main-content {
+            margin-left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <span class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</span>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#payout">Payout</a>
+        <a href="#history">History</a>
+        <a href="#settings">Settings</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+
+    <div class="main-content">
+        <h1>Welcome to the Home Page</h1>
+        <p>Select an option from the sidebar to get started.</p>
+    </div>
+
+    {{ bootstrap.load_js() }}
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            const mainContent = document.querySelector('.main-content');
+            sidebar.classList.toggle('hidden-sidebar');
+            mainContent.classList.toggle('hidden-sidebar');
+        }
+    </script>
+</body>
+</html>
