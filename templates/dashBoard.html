@@ -7,6 +7,16 @@
   <title>Majestic Admin Pro</title>
   <link rel="stylesheet" href="{{ url_for('serve_assets', filename='css/style.css') }}">
   <link rel="shortcut icon" href="{{ url_for('serve_assets', filename='images/favicon.ico') }}">
+
+  <style>
+    .manageUsersLink .dropdown .dropdown-toggle:after {
+      display: none !important;
+    }
+    .manageUsersLink .dropdown .dropdown-menu {
+      margin-top: 0.6rem;
+    }
+
+  </style>
 </head>
 <body>
   <div class="container-scroller">
@@ -27,29 +37,27 @@
   <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
     <ul class="nav">
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="/admin/dashBoard">
           <i class="mdi mdi-home menu-icon"></i>
           <span class="menu-title">Dashboard</span>
         </a>
       </li>    
-         
-    
-      <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-          <i class="mdi mdi-account menu-icon"></i>
-          <span class="menu-title">Manage Users</span>
-          <i class="menu-arrow"></i>
-        </a>
-        <div class="collapse" id="auth">
-          <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="#">Manage User Credintials </a></li>
-            <li class="nav-item"> <a class="nav-link" href="#">User Wallet Update </a></li>
-            <li class="nav-item"> <a class="nav-link" href="#"> User Kyc Update </a></li>
-          </ul>
-        </div>
+
+      <li class="nav-item manageUsersLink">
+        <div class="dropdown show">
+          <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+           Manage users
+          </a>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" href="#">Manage User Credintials </a>
+            <a class="dropdown-item" href="#">User Wallet Update</a>
+            <a class="dropdown-item" href="#">User Kyc Update</a>
+          </div>
+        </div>       
       </li>
     </ul>
     <ul class="navbar-nav navbar-nav-right">
+        
       <li class="nav-item nav-profile dropdown">
       
         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
@@ -775,4 +783,27 @@
 </body>
 
 </html>
+<script>
+  $(document).ready(function() {
+    // Initialize the dropdown on click
+    $('#profileDropdown').on('click', function(e) {
+      e.preventDefault(); // Prevent the default link behavior
+      $(this).next('.dropdown-menu').toggleClass('show'); // Toggle the dropdown menu
+    });
+
+    // Close the dropdown when clicking outside
+    $(document).on('click', function(e) {
+      if (!$(e.target).closest('.nav-profile').length) {
+        $('.dropdown-menu').removeClass('show'); // Hide the dropdown menu
+      }
+    });
+
+    $('#manageUsersLink').on('click', function(event) {
+        event.preventDefault(); // Prevent default anchor click behavior
+
+        // Collapse other open menus if needed
+        $('#auth').collapse('toggle');
+      });
+  });
+</script>
 
