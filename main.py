@@ -11,6 +11,10 @@ def home():
 def dashBoard():
     return render_template('dashBoard.html')
 
+@app.route('/admin/userWalletAndKycUpdate' , methods=['GET'])
+def userWalletKycUpdate():
+    return render_template('manageUser.html')
+
 @app.route('/assets/<path:filename>')
 def serve_assets(filename):
     return send_from_directory('assets', filename)
