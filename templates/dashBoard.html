@@ -213,7 +213,7 @@
     transform: scale(1);
   }
   .hide {
-    display: none;
+    display: none !important;
   }
 
 .dataTables_wrapper .dataTables_length select {
@@ -230,29 +230,61 @@
  .card {
     height: fit-content !important;
 }
+.dropdown .dropdown-toggle:after {
+    content: none !important;
+  }
+.appHeader{
+  margin-left: 1rem !important;
+  color: green;
+  font-weight: 800;
+}
+.blue {
+      color: blue;
+      margin-left: 1rem;
+    }
+
+.red {
+  color: red !important;
+}
+.liadj {
+      font-weight: 900 !important;
+      font-size: 1.2rem !important;
+    }
+
+.bWhite {
+  background-color: white !important;
+}
+.manageUsersLink .dropdown .dropdown-menu {
+    margin-top: 0.4rem;
+}
+.card{
+  border-radius: 2rem !important;
+}
 
   </style>
 </head>
 <body>
   <div class="container-scroller">
-    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-  <div class="navbar-brand-wrapper d-flex justify-content-center">
-    <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
-      <a class="navbar-brand brand-logo" href="index.html"><img src="../../../assets/images/logo.svg"
-          alt="logo" /></a>
-      <a class="navbar-brand brand-logo-white" href="index.html"><img src="../../../assets/images/logo-white.svg"
-          alt="logo" /></a>
-      <a class="navbar-brand brand-logo-mini" href="index.html"><img src="../../../assets/images/logo-mini.svg"
-          alt="logo" /></a>
-      <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-        <span class="mdi mdi-sort-variant"></span>
-      </button>
-    </div>
-  </div>
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row bWhite">
+      <h3 class="appHeader">khazanapay</h3>
+      <div class="navbar-brand-wrapper d-flex justify-content-center hide">
+        <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
+          <a class="navbar-brand brand-logo" href="index.html"><img src="../../../assets/images/logo.svg"
+              alt="logo" /></a>
+          <a class="navbar-brand brand-logo-white" href="index.html"><img src="../../../assets/images/logo-white.svg"
+              alt="logo" /></a>
+          <a class="navbar-brand brand-logo-mini" href="index.html"><img src="../../../assets/images/logo-mini.svg"
+              alt="logo" /></a>
+          <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+            <span class="mdi mdi-sort-variant"></span>
+          </button>
+        </div>
+      </div>
   <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+    <!-- <h3 class="appHeader">khazanapay</h3> -->
     <ul class="nav">
       <li class="nav-item">
-        <a class="nav-link" href="/admin/dashBoard">
+        <a class="nav-link liadj" href="/admin/dashBoard">
           <i class="mdi mdi-home menu-icon"></i>
           <span class="menu-title">Dashboard</span>
         </a>
@@ -260,7 +292,7 @@
 
       <li class="nav-item manageUsersLink">
         <div class="dropdown show">
-          <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle liadj" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
            Manage users
           </a>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -274,8 +306,8 @@
         
       <li class="nav-item nav-profile dropdown">
       
-        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
-          <span class="nav-profile-name">Louis Barnett</span>
+        <a class="nav-link dropdown-toggle liadj dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
+          <span class="nav-profile-name userName"></span>
         </a>
         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
           <a class="dropdown-item">
@@ -304,8 +336,7 @@
               <div class="d-flex justify-content-between flex-wrap">
                 <div class="d-flex align-items-end flex-wrap">
                   <div class="me-md-3 me-xl-5">
-                    <h2>Welcome back,</h2>
-                    <p class="mb-md-0">Your analytics dashboard template.</p>
+                    <h2>Welcome back <b class="userName blue"></b></h2>
                   </div>
                 </div>
               </div>
@@ -447,7 +478,7 @@
                   <div class="carousel-inner">
                     <div class="carousel-item active">
                       <div class="card-body border-bottom">
-                        <p class="card-title">Active Users</p>
+                        <p class="card-title red">Active Users</p>
                         <div class="row">
                           <div class="col-6">
                             <div class="d-flex align-items-center ms-2">
@@ -473,7 +504,7 @@
                     </div>
                     <div class="carousel-item">
                       <div class="card-body border-bottom">
-                        <p class="card-title">Active Users</p>
+                        <p class="card-title red">Active Users</p>
                         <div class="row">
                           <div class="col-6">
                             <div class="d-flex align-items-center ms-2">
@@ -485,7 +516,7 @@
                       <div class="card-body">
                         <div class="d-flex align-items-center justify-content-between mb-3">
                           <div>
-                            <p>Ative users total Wallet</p>
+                            <p>Active users total Wallet</p>
                             <h2 class="mb-0 activeUsersTotalWallet" >0</h2>
                           </div>
                           <div>
@@ -507,12 +538,11 @@
                   <div class="carousel-inner">
                     <div class="carousel-item active">
                       <div class="card-body border-bottom">
-                        <p class="card-title">Monthly income</p>
+                        <p class="card-title red">INACTIVE USERS</p>
                         <div class="row">
                           <div class="col-6">
                             <div class="d-flex align-items-center ms-2">
-                              <h2 class="font-weight-bold mb-0 me-1">0</h2>
-                              <i class="mdi mdi-chevron-up text-warning icon-md"></i>
+                              <h2 class="font-weight-bold mb-0 me-1 inActiveUsersCount">0</h2>
                             </div>
                           </div>
                         </div>
@@ -520,8 +550,8 @@
                       <div class="card-body">
                         <div class="d-flex align-items-center justify-content-between mb-3">
                           <div>
-                            <p>Sales income</p>
-                            <h2 class="mb-0">20087</h2>
+                            <p>In active users total Wallet</p>
+                            <h2 class="mb-0 inactiveTotalWallet">0</h2>
                           </div>
                           <div>
                             <div class="icon-box-warning icon-box-lg">
@@ -534,11 +564,11 @@
                     </div>
                     <div class="carousel-item">
                       <div class="card-body border-bottom">
-                        <p class="card-title">Monthly income</p>
+                        <p class="card-title red">INACTIVE USERS</p>
                         <div class="row">
                           <div class="col-6">
                             <div class="d-flex align-items-center ms-2">
-                              <h2 class="font-weight-bold mb-0 me-1">23%</h2>
+                              <h2 class="font-weight-bold mb-0 me-1 inActiveUsersCount" >0</h2>
                               <i class="mdi mdi-chevron-up text-warning icon-md"></i>
                             </div>
                           </div>
@@ -547,8 +577,8 @@
                       <div class="card-body">
                         <div class="d-flex align-items-center justify-content-between mb-3">
                           <div>
-                            <p>Sales income</p>
-                            <h2 class="mb-0">7368</h2>
+                            <p>In active users total Wallet</p>
+                            <h2 class="mb-0 inactiveTotalWallet">0</h2>
                           </div>
                           <div>
                             <div class="icon-box-warning icon-box-lg">
@@ -569,11 +599,11 @@
                   <div class="carousel-inner">
                     <div class="carousel-item active">
                       <div class="card-body border-bottom">
-                        <p class="card-title">Yearly sales</p>
+                        <p class="card-title red">WALLET HISTORY RECHARGE</p>
                         <div class="row">
                           <div class="col-6">
                             <div class="d-flex align-items-center ms-2">
-                              <h2 class="font-weight-bold mb-0 me-1">52%</h2>
+                              <h2 class="font-weight-bold mb-0 me-1 rechargeCount">0</h2>
                               <i class="mdi mdi-chevron-down text-danger icon-md"></i>
                             </div>
                           </div>
@@ -582,8 +612,8 @@
                       <div class="card-body">
                         <div class="d-flex align-items-center justify-content-between mb-3">
                           <div>
-                            <p>Purchases</p>
-                            <h2 class="mb-0">8304</h2>
+                            <p>Recharge total amount</p>
+                            <h2 class="mb-0 totalRechargeAmount">8304</h2>
                           </div>
                           <div>
                             <div class="icon-box-info icon-box-lg">
@@ -596,11 +626,11 @@
                     </div>
                     <div class="carousel-item">
                       <div class="card-body border-bottom">
-                        <p class="card-title">Yearly sales</p>
+                        <p class="card-title red">WALLET HISTORY RECHARGE</p>
                         <div class="row">
                           <div class="col-6">
                             <div class="d-flex align-items-center ms-2">
-                              <h2 class="font-weight-bold mb-0 me-1">29%</h2>
+                              <h2 class="font-weight-bold mb-0 me-1 rechargeCount">0</h2>
                             </div>
                           </div>
                         </div>
@@ -608,8 +638,8 @@
                       <div class="card-body">
                         <div class="d-flex align-items-center justify-content-between mb-3">
                           <div>
-                            <p>Purchases</p>
-                            <h2 class="mb-0">8543</h2>
+                            <p>Recharge total amount</p>
+                            <h2 class="mb-0 totalRechargeAmount">0</h2>
                           </div>
                           <div>
                             <div class="icon-box-info icon-box-lg">
@@ -617,7 +647,6 @@
                             </div>
                           </div>
                         </div>
-                        <h5>Gross sales of April</h5>
                         <p class="text-muted mb-0">The total wallet balance is directly related to the platform's potential revenue. High wallet balances may lead to increased transaction fees and other monetization opportunities.</p>
                       </div>
                     </div>
@@ -631,11 +660,11 @@
                   <div class="carousel-inner">
                     <div class="carousel-item active">
                       <div class="card-body border-bottom">
-                        <p class="card-title">Daily deposits</p>
+                        <p class="card-title red">WALLET HISTORY REFOUND</p>
                         <div class="row">
                           <div class="col-6">
                             <div class="d-flex align-items-center ms-2">
-                              <h2 class="font-weight-bold mb-0 me-1">19%</h2>
+                              <h2 class="font-weight-bold mb-0 me-1 refoundCount">0</h2>
                             </div>
                           </div>
                         </div>
@@ -643,8 +672,8 @@
                       <div class="card-body">
                         <div class="d-flex align-items-center justify-content-between mb-3">
                           <div>
-                            <p>Security deposits</p>
-                            <h2 class="mb-0">2388</h2>
+                            <p>Refound Total amount</p>
+                            <h2 class="mb-0 totalRefoundAmount">0</h2>
                           </div>
                           <div>
                             <div class="icon-box-success icon-box-lg">
@@ -652,17 +681,16 @@
                             </div>
                           </div>
                         </div>
-                        <h5>Gross sales of May</h5>
                         <p class="text-muted mb-0">The total wallet balance is directly related to the platform's potential revenue. High wallet balances may lead to increased transaction fees and other monetization opportunities.</p>
                       </div>
                     </div>
                     <div class="carousel-item">
                       <div class="card-body border-bottom">
-                        <p class="card-title">Daily deposits</p>
+                        <p class="card-title red">WALLET HISTORY REFOUND</p>
                         <div class="row">
                           <div class="col-6">
                             <div class="d-flex align-items-center ms-2">
-                              <h2 class="font-weight-bold mb-0 me-1">33%</h2>
+                              <h2 class="font-weight-bold mb-0 me-1 refoundCount">0</h2>
                             </div>
                           </div>
                         </div>
@@ -670,8 +698,8 @@
                       <div class="card-body">
                         <div class="d-flex align-items-center justify-content-between mb-3">
                           <div>
-                            <p>Security deposits</p>
-                            <h2 class="mb-0">7589</h2>
+                            <p>Refound Total amount</p>
+                            <h2 class="mb-0 totalRefoundAmount">0</h2>
                           </div>
                           <div>
                             <div class="icon-box-success icon-box-lg">
@@ -683,12 +711,6 @@
                       </div>
                     </div>
                   </div>
-                  <a class="carousel-control-prev bg-white" href="#dailyDepositsCarousel" role="button" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  </a>
-                  <a class="carousel-control-next bg-white" href="#dailyDepositsCarousel" role="button" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  </a>
                 </div>    
               </div>
             </div>
@@ -697,6 +719,7 @@
             <div class="col-md-6 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
+                  <p class="card-title red">ADMIN USERS</p>
                    <div class="spinnerContainer" id="tableLoader">
                           <div class="item-1"></div>
                           <div class="item-2"></div>
@@ -712,8 +735,8 @@
             </div>
             <div class="col-md-6 grid-margin stretch-card">
               <div class="card">
-                <div class="card-body">
                     <div class="card-body">
+                      <p class="card-title red">WALLET HISTORY</p>
                       <div class="spinnerContainer" id="tableLoader1">
                             <div class="item-1"></div>
                             <div class="item-2"></div>
@@ -725,11 +748,10 @@
                       <div id="table-container1" class="usersTable1"></div>
                     </div>
                   </div>
-                </div>
               </div>
             </div>
           </div>
-          <div class="row">
+          <div class="row hide">
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
@@ -818,7 +840,7 @@
               </div>
             </div>
           </div>
-          <div class="row">
+          <div class="row hide">
             <div class="col-md-4 grid-margin grid-margin-md-0 stretch-card">
               <div class="card border-0 bg-primary text-white">
                 <div id="downloads-carousel" class="carousel slide card-carousel" data-ride="carousel">
@@ -967,10 +989,10 @@ if (!token || !username) {
       getAdminUsers();
       getWalletHistory();
   });
-
+$(".userName").html(username);
   function getAdminUsers() {
     if (!token || !username) {
-      window.location.href = "/admin/login";
+      window.location.href = "/";
     }
     const headers = {
         "Content-Type": "application/json",
@@ -979,7 +1001,7 @@ if (!token || !username) {
     const payload = {
         username: username
     };
-    let url = "https://super-duper-bassoon-wr94q6v4xxr4hvv7r-8080.app.github.dev/admin/getUsers";
+    let url = "https://khazanapay.net/admin/getUsers";
     $.ajax({
         url: url,
         type: "GET",
@@ -991,9 +1013,10 @@ if (!token || !username) {
             $(".tableLoader").removeClass("hide");
         },
         error: function(xhr, status, error) {
+            alert("Something went wrong. Please login again.");
+            window.location.href = "/";
             if (xhr.responseJSON && xhr.responseJSON.errorMsg) {
                 var errorMessage = xhr.responseJSON.errorMsg;
-                alert(errorMessage);
                 console.log("Error message from backend:", errorMessage);
             }
         },
@@ -1006,6 +1029,7 @@ function createTable(data) {
     var activeUserCount = 0;
     var unActiveUserCount = 0;
     var activeUsersTotalWallet = 0;
+    var inActiveTotalWallet = 0;
     if (data) {
         let headers = ["User Name", "First Name", "Last Name", "Phone No.", "Wallet", "Status"];
 
@@ -1028,20 +1052,22 @@ function createTable(data) {
             $row.append($("<td></td>").text(transaction["last_name"]));
             $row.append($("<td></td>").text(transaction["phone_number"]));
             $row.append($("<td></td>").text(transaction["payout_wallet"]));
-            activeUsersTotalWallet += parseFloat(transaction["payout_wallet"]);
            // parseFloat(str)
             var status = transaction["kyc_status"];
             if (status == "True"){
               $row.append($("<td></td>").text("Active"));
+              activeUsersTotalWallet += parseFloat(transaction["payout_wallet"]);
               activeUserCount++;
             } else {
               $row.append($("<td></td>").text("Not Active"));
+              inActiveTotalWallet += parseFloat(transaction["payout_wallet"]);
               unActiveUserCount++;
             }
             $tableBody.append($row);
         });
-        alert(activeUsersTotalWallet);
         $(".activeUsersTotalWallet").html(activeUsersTotalWallet);
+        $(".inactiveTotalWallet").text(inActiveTotalWallet);
+        $(".inActiveUsersCount").text(unActiveUserCount);
         $(".numOfActiveUsers").html(activeUserCount);
         $table.append($tableBody);
         // Initialize DataTable
@@ -1066,7 +1092,7 @@ function getWalletHistory() {
     const payload = {
         username: username
     };
-    let url = "https://super-duper-bassoon-wr94q6v4xxr4hvv7r-8080.app.github.dev/admin/getWalletHistory";
+    let url = "https://khazanapay.net/admin/getWalletHistory";
     $.ajax({
         url: url,
         type: "GET",
@@ -1078,9 +1104,10 @@ function getWalletHistory() {
             $(".tableLoader1").removeClass("hide");
         },
         error: function(xhr, status, error) {
+          alert("Something went wrong. Please login again.");
+            window.location.href = "/";
             if (xhr.responseJSON && xhr.responseJSON.errorMsg) {
                 var errorMessage = xhr.responseJSON.errorMsg;
-                alert(errorMessage);
                 console.log("Error message from backend:", errorMessage);
             }
         },
@@ -1090,6 +1117,10 @@ function getWalletHistory() {
 
 function createWalletHistoryTable(data) {
  // data.reverse();
+    var rechargeCount = 0;
+    var refoundCount = 0;
+    var totalRechargeAmount = 0;
+    var totalRefoundAmount = 0;
     if (data) {
         let headers = ["Id", "Username", "Amount", "Transaction Type", "Reason", "Date"];
 
@@ -1106,14 +1137,21 @@ function createWalletHistoryTable(data) {
         let $tableBody = $("<tbody></tbody>");
         var dataObj = data;
         dataObj.forEach(function(transaction) {
-          //new Date(transaction["transaction_date"]).toLocaleString())
             let $row = $("<tr scope='row'></tr>");
             $row.append($("<td></td>").text(transaction["id"]));
             $row.append($("<td></td>").text(transaction["username"]));
             $row.append($("<td></td>").text(transaction["amount"]));
-            $row.append($("<td></td>").text(transaction["transaction_type"]));
+            var transaction_type = transaction["transaction_type"];
+            var amount = transaction["amount"];
+            if (transaction_type == "RECHARGE") {
+              totalRechargeAmount += parseFloat(amount);
+              rechargeCount++;
+            } else {
+              totalRefoundAmount +=  parseFloat(amount);
+              refoundCount++;
+            }
+            $row.append($("<td></td>").text(transaction_type));
             $row.append($("<td></td>").text(transaction["reason"]));
-            //$row.append($("<td></td>").text(transaction["date_time"]));
             const date = moment(transaction["date_time"]);
             const formattedDate = date.tz('Asia/Kolkata').format('DD-MM-YYYY HH:mm:ss');
              $row.append($("<td></td>").text(formattedDate));
@@ -1130,6 +1168,11 @@ function createWalletHistoryTable(data) {
               [5, 10, 25, 50, 100, 500, "All"] // Display text for each value
           ]
         });
+        $(".rechargeCount").html(rechargeCount);
+        $(".totalRechargeAmount").html(totalRechargeAmount);
+        $(".refoundCount").html(refoundCount);
+        $(".totalRefoundAmount").html(totalRefoundAmount);
+
     } else {
         $("#table-container1").append("<p>No transactions found.</p>");
     }
