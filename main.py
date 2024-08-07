@@ -30,4 +30,4 @@ def serve_JQuery(filename):
     return send_from_directory('templates', filename)
 
 if __name__ == '__main__':
-    app.run(host = 0.0.0.0, port=8080)
+    app.run(host='0.0.0.0', port=8080)
