@@ -1,1044 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Majestic Admin Pro</title>
-  <link rel="stylesheet" href="{{ url_for('serve_assets', filename='css/style.css') }}">
-  <link rel="shortcut icon" href="{{ url_for('serve_assets', filename='images/favicon.ico') }}">
-  <!-- <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script> -->
-  <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css"> -->
-
-   <!-- Include Bootstrap CSS for styling -->
-   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-   <!-- Include DataTables CSS -->
-   <link href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet">
-
- 
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Khazana Pay Admin</title>
+  <!-- Materialize CSS -->
+  <link rel="stylesheet" href="{{ url_for('serve_assets', filename='css/materialize.min.css') }}">
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
   <style>
-    .manageUsersLink .dropdown .dropdown-toggle:after {
-      display: none !important;
+    body {
+      background-color: aliceblue !important;
+      font-size: large;
+      font-style: oblique;
+      font-family: cursive;
     }
-    .manageUsersLink .dropdown .dropdown-menu {
-      margin-top: 0.6rem;
+    .headerRow {
+      background-color: #031403 ;
+      color: white;
+      font-size: x-large;
+      margin-top: -3rem;
     }
-
-    .spinnerContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    animation-delay: 1s;
-  }
-  
-  .item-1 {
-    width: 10px;
-    height: 10px;
-    background: #f583a1;
-    border-radius: 50%;
-    background-color: #b6f3b6;
-    margin: 7px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  @keyframes scale {
-    0% {
-      transform: scale(1);
-    }
-    50%,
-      75% {
-      transform: scale(2.5);
-    }
-    78%, 100% {
-      opacity: 0;
-    }
-  }
-  .item-1:before {
-    content: '';
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: #62edc4;
-    opacity: 0.7;
-    animation: scale 2s infinite cubic-bezier(0, 0, 0.49, 1.02);
-    animation-delay: 200ms;
-    transition: 0.5s all ease;
-    transform: scale(1);
-  }
-  
-  .item-2 {
-    width: 10px;
-    height: 10px;
-    background: #f583a1;
-    border-radius: 50%;
-    background-color: #8af78a;
-    margin: 7px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  @keyframes scale {
-    0% {
-      transform: scale(1);
-    }
-    50%,
-      75% {
-      transform: scale(2.5);
-    }
-    78%, 100% {
-      opacity: 0;
-    }
-  }
-  .item-2:before {
-    content: '';
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: #62edc4;
-    opacity: 0.7;
-    animation: scale 2s infinite cubic-bezier(0, 0, 0.49, 1.02);
-    animation-delay: 400ms;
-    transition: 0.5s all ease;
-    transform: scale(1);
-  }
-  
-  .item-3 {
-    width: 10px;
-    height: 10px;
-    background: #f583a1;
-    border-radius: 50%;
-    background-color: #5ce95c;
-    margin: 7px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  @keyframes scale {
-    0% {
-      transform: scale(1);
-    }
-    50%,
-      75% {
-      transform: scale(2.5);
-    }
-    78%, 100% {
-      opacity: 0;
-    }
-  }
-  .item-3:before {
-    content: '';
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: #62edc4;
-    opacity: 0.7;
-    animation: scale 2s infinite cubic-bezier(0, 0, 0.49, 1.02);
-    animation-delay: 600ms;
-    transition: 0.5s all ease;
-    transform: scale(1);
-  }
-  
-  .item-4 {
-    width: 10px;
-    height: 10px;
-    background: #f583a1;
-    border-radius: 50%;
-    background-color: #1ad51a;
-    margin: 7px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  @keyframes scale {
-    0% {
-      transform: scale(1);
-    }
-    50%,
-      75% {
-      transform: scale(2.5);
-    }
-    78%, 100% {
-      opacity: 0;
-    }
-  }
-  .item-4:before {
-    content: '';
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: #62edc4;
-    opacity: 0.7;
-    animation: scale 2s infinite cubic-bezier(0, 0, 0.49, 1.02);
-    animation-delay: 800ms;
-    transition: 0.5s all ease;
-    transform: scale(1);
-  }
-  
-  .item-5 {
-    width: 10px;
-    height: 10px;
-    background: #f583a1;
-    border-radius: 50%;
-    background-color: #06b106;
-    margin: 7px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  @keyframes scale {
-    0% {
-      transform: scale(1);
-    }
-    50%,
-      75% {
-      transform: scale(2.5);
-    }
-    78%, 100% {
-      opacity: 0;
-    }
-  }
-  .item-5:before {
-    content: '';
-    width: 10px;
-    height: 10px;;
-    border-radius: 50%;
-    background-color: #62edc4;
-    opacity: 0.7;
-    animation: scale 2s infinite cubic-bezier(0, 0, 0.49, 1.02);
-    animation-delay: 1000ms;
-    transition: 0.5s all ease;
-    transform: scale(1);
-  }
-  .hide {
-    display: none !important;
-  }
-
-.dataTables_wrapper .dataTables_length select {
-    width: 45px !important;
-}
-
-.dataTables_wrapper .dataTable thead .sorting:before, .dataTables_wrapper .dataTable thead .sorting_asc:before, .dataTables_wrapper .dataTable thead .sorting_desc:before, .dataTables_wrapper .dataTable thead .sorting_asc_disabled:before, .dataTables_wrapper .dataTable thead .sorting_desc_disabled:before {
-    content: none !important;
-}
-
-.dataTables_wrapper .dataTable thead .sorting:after, .dataTables_wrapper .dataTable thead .sorting_asc:after, .dataTables_wrapper .dataTable thead .sorting_desc:after, .dataTables_wrapper .dataTable thead .sorting_asc_disabled:after, .dataTables_wrapper .dataTable thead .sorting_desc_disabled:after {
-    content: none !important;
-}
- .card {
-    height: fit-content !important;
-}
-.dropdown .dropdown-toggle:after {
-    content: none !important;
-  }
-.appHeader{
-  margin-left: 1rem !important;
-  color: green;
-  font-weight: 800;
-}
-.blue {
-      color: blue;
+    .homeHeader {
+      font-weight: 600 !important;
       margin-left: 1rem;
     }
-
-.red {
-  color: red !important;
-}
-.liadj {
-      font-weight: 900 !important;
-      font-size: 1.2rem !important;
+    .card-panel {
+      border-radius: 14px !important;
     }
-
-.bWhite {
-  background-color: white !important;
+    .btn {
+      background-color: #2196f3;
+      width: 50%;
+      border-radius: 14px;
+    }
+    label {
+      font-size: larger !important;
+    }
+    .toast {
+      border-radius: 14px !important;
+    }
+    nav {
+      background-color: #20208f !important;
+      margin-top: -3rem;
+    }
+    span {
+      font-weight: 800 !important;
+      color: red;
+    }
+    .dataTables_wrapper .dataTables_filter input {
+    height: auto;
 }
-.manageUsersLink .dropdown .dropdown-menu {
-    margin-top: 0.4rem;
+.card {
+  overflow: auto;
 }
-.card{
-  border-radius: 2rem !important;
+#walletTableContainer .dataTables_wrapper .dataTables_filter {
+    margin-right: 2rem;
 }
-
+.dataTables_wrapper .dataTables_length{
+    display: none;
+}
+.tabelheader {
+      background-color: aliceblue;
+    }
   </style>
 </head>
 <body>
-  <div class="container-scroller">
-    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row bWhite">
-      <h3 class="appHeader">khazanapay</h3>
-      <div class="navbar-brand-wrapper d-flex justify-content-center hide">
-        <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
-          <a class="navbar-brand brand-logo" href="index.html"><img src="../../../assets/images/logo.svg"
-              alt="logo" /></a>
-          <a class="navbar-brand brand-logo-white" href="index.html"><img src="../../../assets/images/logo-white.svg"
-              alt="logo" /></a>
-          <a class="navbar-brand brand-logo-mini" href="index.html"><img src="../../../assets/images/logo-mini.svg"
-              alt="logo" /></a>
-          <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-            <span class="mdi mdi-sort-variant"></span>
-          </button>
+  <nav>
+    <div class="nav-wrapper">
+      <h1 class="homeHeader">
+        <a href="#" class="brand-logo">khazanapay Admin</a>
+      </h1>
+      <ul id="nav-mobile" class="right">
+        <li class="active"><a href="/admin/dashBoard">Dashboard</a></li>
+        <li> <a href="/admin/userWalletAndKycUpdate">Manage Users</a></li>
+        <li><a href="/">Log Out</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="row">
+    <div class="col s12 m12 l12 xl12">
+      <div class="card">
+        <div class="card-content center-align">
+          <span class="card-title">Admin Users</span>
+          <div class="preloader-wrapper big active" id="adminLoader">
+            <div class="spinner-layer spinner-blue">
+              <div class="circle-clipper left"><div class="circle"></div></div>
+              <div class="gap-patch"><div class="circle"></div></div>
+              <div class="circle-clipper right"><div class="circle"></div></div>
+            </div>
+            <div class="spinner-layer spinner-red">
+              <div class="circle-clipper left"><div class="circle"></div></div>
+              <div class="gap-patch"><div class="circle"></div></div>
+              <div class="circle-clipper right"><div class="circle"></div></div>
+            </div>
+            <div class="spinner-layer spinner-yellow">
+              <div class="circle-clipper left"><div class="circle"></div></div>
+              <div class="gap-patch"><div class="circle"></div></div>
+              <div class="circle-clipper right"><div class="circle"></div></div>
+            </div>
+            <div class="spinner-layer spinner-green">
+              <div class="circle-clipper left"><div class="circle"></div></div>
+              <div class="gap-patch"><div class="circle"></div></div>
+              <div class="circle-clipper right"><div class="circle"></div></div>
+            </div>
+          </div>
+          <div id="adminTableContainer"></div>
         </div>
       </div>
-  <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-    <!-- <h3 class="appHeader">khazanapay</h3> -->
-    <ul class="nav">
-      <li class="nav-item">
-        <a class="nav-link liadj" href="/admin/dashBoard">
-          <i class="mdi mdi-home menu-icon"></i>
-          <span class="menu-title">Dashboard</span>
-        </a>
-      </li>    
+    </div>
+    <div class="col s12 m12 l12 xl12">
+      <div class="card">
+        <div class="card-content center-align">
+          <span class="card-title bold">Wallet History</span>
+          <div class="preloader-wrapper big active center" id="walletLoader">
+            <div class="spinner-layer spinner-blue">
+              <div class="circle-clipper left"><div class="circle"></div></div>
+              <div class="gap-patch"><div class="circle"></div></div>
+              <div class="circle-clipper right"><div class="circle"></div></div>
+            </div>
+            <div class="spinner-layer spinner-red">
+              <div class="circle-clipper left"><div class="circle"></div></div>
+              <div class="gap-patch"><div class="circle"></div></div>
+              <div class="circle-clipper right"><div class="circle"></div></div>
+            </div>
+            <div class="spinner-layer spinner-yellow">
+              <div class="circle-clipper left"><div class="circle"></div></div>
+              <div class="gap-patch"><div class="circle"></div></div>
+              <div class="circle-clipper right"><div class="circle"></div></div>
+            </div>
+            <div class="spinner-layer spinner-green">
+              <div class="circle-clipper left"><div class="circle"></div></div>
+              <div class="gap-patch"><div class="circle"></div></div>
+              <div class="circle-clipper right"><div class="circle"></div></div>
+            </div>
+          </div>
+        </div>
+        <div id="walletTableContainer"></div>
 
-      <li class="nav-item manageUsersLink">
-        <div class="dropdown show">
-          <a class="nav-link dropdown-toggle liadj" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-           Manage users
-          </a>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item" href="#">Manage User Credintials </a>
-            <a class="dropdown-item" href="/admin/userWalletAndKycUpdate">User Wallet Update/User Kyc Update</a>
-          </div>
-        </div>       
-      </li>
-    </ul>
-    <ul class="navbar-nav navbar-nav-right">
-        
-      <li class="nav-item nav-profile dropdown">
-      
-        <a class="nav-link dropdown-toggle liadj dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
-          <span class="nav-profile-name userName"></span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-          <a class="dropdown-item">
-            <i class="mdi mdi-cog text-primary"></i>
-            Settings
-          </a>
-          <a class="dropdown-item" href="/">
-            <i class="mdi mdi-logout text-primary"></i>
-            Logout
-          </a>
-        </div>
-      </li>
-    </ul>
-    <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
-      data-toggle="offcanvas">
-      <span class="mdi mdi-menu"></span>
-    </button>
-  </div>
-</nav>
-    <!-- partial -->
-    <div class="container-fluid page-body-wrapper">      
-      <div class="">
-        <div class="content-wrapper">
-          <div class="row">
-            <div class="col-md-12 grid-margin">
-              <div class="d-flex justify-content-between flex-wrap">
-                <div class="d-flex align-items-end flex-wrap">
-                  <div class="me-md-3 me-xl-5">
-                    <h2>Welcome back <b class="userName blue"></b></h2>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body dashboard-tabs p-0">
-                  <div class="tab-content py-0 px-0 border-left-0 border-bottom-0 border-right-0">
-                    <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
-                    </div>
-                    <div class="tab-pane fade" id="sales" role="tabpanel" aria-labelledby="sales-tab">
-                      <div class="d-flex flex-wrap justify-content-xl-between">
-                        <div class="d-none d-xl-flex border-md-right flex-grow-1 align-items-center justify-content-left justify-content-md-center px-4 px-md-0 mx-1 mx-md-0 p-3 item">
-                          <div class="icon-box-secondary me-3">
-                            <i class="mdi mdi-calendar-heart"></i>
-                          </div>
-                          <div class="d-flex flex-column justify-content-around">
-                            <small class="mb-1 text-muted">Start date</small>  
-                              <div class="dropdown">
-                                <a class="btn btn-secondary dropdown-toggle p-0 bg-transparent border-0 text-dark shadow-none font-weight-medium" href="#" role="button" id="dropdownMenuLinkB" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  <h5 class="mb-0 d-inline-block">26 Jul 2018</h5>
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLinkB">
-                                  <a class="dropdown-item" href="#">12 Aug 2018</a>
-                                  <a class="dropdown-item" href="#">22 Sep 2018</a>
-                                  <a class="dropdown-item" href="#">21 Oct 2018</a>
-                                </div>
-                              </div>
-                          </div>
-                        </div>
-                        <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-left justify-content-md-center px-4 px-md-0 mx-1 mx-md-0 p-3 item">
-                          <div class="icon-box-secondary me-3">
-                            <i class="mdi mdi-currency-usd"></i>
-                          </div>
-                          <div class="d-flex flex-column justify-content-around">
-                            <small class="mb-1 text-muted">Revenue</small>
-                            <h5 class="me-2 mb-0">$577545</h5>
-                          </div>
-                        </div>
-                        <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-left justify-content-md-center px-4 px-md-0 mx-1 mx-md-0 p-3 item">
-                          <div class="icon-box-secondary me-3">
-                            <i class="mdi mdi-eye"></i>
-                          </div>
-                          <div class="d-flex flex-column justify-content-around">
-                            <small class="mb-1 text-muted">Total views</small>
-                            <h5 class="me-2 mb-0">9833550</h5>
-                          </div>
-                        </div>
-                        <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-left justify-content-md-center px-4 px-md-0 mx-1 mx-md-0 p-3 item">
-                          <div class="icon-box-secondary me-3">
-                            <i class="mdi mdi-download"></i>
-                          </div>
-                          <div class="d-flex flex-column justify-content-around">
-                            <small class="mb-1 text-muted">Downloads</small>
-                            <h5 class="me-2 mb-0">2233783</h5>
-                          </div>
-                        </div>
-                        <div class="d-flex py-3 border-md-right flex-grow-1 align-items-center justify-content-left justify-content-md-center px-4 px-md-0 mx-1 mx-md-0 p-3 item">
-                          <div class="icon-box-secondary me-3">
-                            <i class="mdi mdi-flag"></i>
-                          </div>
-                          <div class="d-flex flex-column justify-content-around">
-                            <small class="mb-1 text-muted">Flagged</small>
-                            <h5 class="me-2 mb-0">3497843</h5>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="tab-pane fade" id="purchases" role="tabpanel" aria-labelledby="purchases-tab">
-                      <div class="d-flex flex-wrap justify-content-xl-between">
-                        <div class="d-none d-xl-flex border-md-right flex-grow-1 align-items-center justify-content-left justify-content-md-center px-4 px-md-0 mx-1 mx-md-0 p-3 item">
-                          <div class="icon-box-secondary me-3">
-                            <i class="mdi mdi-calendar-heart"></i>
-                          </div>
-                          <div class="d-flex flex-column justify-content-around">
-                            <small class="mb-1 text-muted">Start date</small>
-                            <div class="dropdown">
-                              <a class="btn btn-secondary dropdown-toggle p-0 bg-transparent border-0 text-dark shadow-none font-weight-medium" href="#" role="button" id="dropdownMenuLinkC" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <h5 class="mb-0 d-inline-block">26 Jul 2018</h5>
-                              </a>
-                            
-                              <div class="dropdown-menu" aria-labelledby="dropdownMenuLinkC">
-                                <a class="dropdown-item" href="#">12 Aug 2018</a>
-                                <a class="dropdown-item" href="#">22 Sep 2018</a>
-                                <a class="dropdown-item" href="#">21 Oct 2018</a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-left justify-content-md-center px-4 px-md-0 mx-1 mx-md-0 p-3 item">
-                          <div class="icon-box-secondary me-3">
-                            <i class="mdi mdi-currency-usd"></i>
-                          </div>
-                          <div class="d-flex flex-column justify-content-around">
-                            <small class="mb-1 text-muted">Revenue</small>
-                            <h5 class="me-2 mb-0">$577545</h5>
-                          </div>
-                        </div>
-                        <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-left justify-content-md-center px-4 px-md-0 mx-1 mx-md-0 p-3 item">
-                          <div class="icon-box-secondary me-3">
-                            <i class="mdi mdi-eye"></i>
-                          </div>
-                          <div class="d-flex flex-column justify-content-around">
-                            <small class="mb-1 text-muted">Total views</small>
-                            <h5 class="me-2 mb-0">9833550</h5>
-                          </div>
-                        </div>
-                        <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-left justify-content-md-center px-4 px-md-0 mx-1 mx-md-0 p-3 item">
-                          <div class="icon-box-secondary me-3">
-                            <i class="mdi mdi-download"></i>
-                          </div>
-                          <div class="d-flex flex-column justify-content-around">
-                            <small class="mb-1 text-muted">Downloads</small>
-                            <h5 class="me-2 mb-0">2233783</h5>
-                          </div>
-                        </div>
-                        <div class="d-flex py-3 border-md-right flex-grow-1 align-items-center justify-content-left justify-content-md-center px-4 px-md-0 mx-1 mx-md-0 p-3 item">
-                          <div class="icon-box-secondary me-3">
-                            <i class="mdi mdi-flag"></i>
-                          </div>
-                          <div class="d-flex flex-column justify-content-around">
-                            <small class="mb-1 text-muted">Flagged</small>
-                            <h5 class="me-2 mb-0">3497843</h5>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6 col-xl-3 grid-margin stretch-card">
-              <div class="card">
-                <div id="cashSalesCarousel" class="carousel slide card-carousel" data-ride="carousel">
-                  <div class="carousel-inner">
-                    <div class="carousel-item active">
-                      <div class="card-body border-bottom">
-                        <p class="card-title red">Active Users</p>
-                        <div class="row">
-                          <div class="col-6">
-                            <div class="d-flex align-items-center ms-2">
-                              <h2 class="font-weight-bold mb-0 me-1 numOfActiveUsers">0</h2>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="card-body">
-                        <div class="d-flex align-items-center justify-content-between mb-3">
-                          <div>
-                            <p>Ative users total Wallet</p>
-                            <h2 class="mb-0 activeUsersTotalWallet">0</h2>
-                          </div>
-                          <div>
-                            <div class="icon-box-primary icon-box-lg">
-                              <i class="mdi mdi-wallet"></i>
-                            </div>
-                          </div>
-                        </div>
-                        <p class="text-muted mb-0">The total wallet balance is directly related to the platform's potential revenue. High wallet balances may lead to increased transaction fees and other monetization opportunities.</p>
-                      </div>
-                    </div>
-                    <div class="carousel-item">
-                      <div class="card-body border-bottom">
-                        <p class="card-title red">Active Users</p>
-                        <div class="row">
-                          <div class="col-6">
-                            <div class="d-flex align-items-center ms-2">
-                              <h2 class="font-weight-bold mb-0 me-1 numOfActiveUsers">0</h2>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="card-body">
-                        <div class="d-flex align-items-center justify-content-between mb-3">
-                          <div>
-                            <p>Active users total Wallet</p>
-                            <h2 class="mb-0 activeUsersTotalWallet" >0</h2>
-                          </div>
-                          <div>
-                            <div class="icon-box-primary icon-box-lg">
-                              <i class="mdi mdi-wallet"></i>
-                            </div>
-                          </div>
-                        </div>
-                        <p class="text-muted mb-0">The total wallet balance is directly related to the platform's potential revenue. High wallet balances may lead to increased transaction fees and other monetization opportunities.</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>    
-              </div>
-            </div>
-            <div class="col-md-6 col-xl-3 grid-margin stretch-card">
-              <div class="card">
-                <div id="monthlyIncomeCarousel" class="carousel slide card-carousel" data-ride="carousel">
-                  <div class="carousel-inner">
-                    <div class="carousel-item active">
-                      <div class="card-body border-bottom">
-                        <p class="card-title red">INACTIVE USERS</p>
-                        <div class="row">
-                          <div class="col-6">
-                            <div class="d-flex align-items-center ms-2">
-                              <h2 class="font-weight-bold mb-0 me-1 inActiveUsersCount">0</h2>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="card-body">
-                        <div class="d-flex align-items-center justify-content-between mb-3">
-                          <div>
-                            <p>In active users total Wallet</p>
-                            <h2 class="mb-0 inactiveTotalWallet">0</h2>
-                          </div>
-                          <div>
-                            <div class="icon-box-warning icon-box-lg">
-                              <i class="mdi mdi-credit-card"></i>
-                            </div>
-                          </div>
-                        </div>
-                        <p class="text-muted mb-0">The total wallet balance is directly related to the platform's potential revenue. High wallet balances may lead to increased transaction fees and other monetization opportunities.</p>
-                      </div>
-                    </div>
-                    <div class="carousel-item">
-                      <div class="card-body border-bottom">
-                        <p class="card-title red">INACTIVE USERS</p>
-                        <div class="row">
-                          <div class="col-6">
-                            <div class="d-flex align-items-center ms-2">
-                              <h2 class="font-weight-bold mb-0 me-1 inActiveUsersCount" >0</h2>
-                              <i class="mdi mdi-chevron-up text-warning icon-md"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="card-body">
-                        <div class="d-flex align-items-center justify-content-between mb-3">
-                          <div>
-                            <p>In active users total Wallet</p>
-                            <h2 class="mb-0 inactiveTotalWallet">0</h2>
-                          </div>
-                          <div>
-                            <div class="icon-box-warning icon-box-lg">
-                              <i class="mdi mdi-credit-card"></i>
-                            </div>
-                          </div>
-                        </div>
-                        <p class="text-muted mb-0">The total wallet balance is directly related to the platform's potential revenue. High wallet balances may lead to increased transaction fees and other monetization opportunities.</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>    
-              </div>
-            </div>
-            <div class="col-md-6 col-xl-3 grid-margin stretch-card">
-              <div class="card">
-                <div id="yearlySalesCarousel" class="carousel slide card-carousel" data-ride="carousel">
-                  <div class="carousel-inner">
-                    <div class="carousel-item active">
-                      <div class="card-body border-bottom">
-                        <p class="card-title red">WALLET HISTORY RECHARGE</p>
-                        <div class="row">
-                          <div class="col-6">
-                            <div class="d-flex align-items-center ms-2">
-                              <h2 class="font-weight-bold mb-0 me-1 rechargeCount">0</h2>
-                              <i class="mdi mdi-chevron-down text-danger icon-md"></i>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="card-body">
-                        <div class="d-flex align-items-center justify-content-between mb-3">
-                          <div>
-                            <p>Recharge total amount</p>
-                            <h2 class="mb-0 totalRechargeAmount">8304</h2>
-                          </div>
-                          <div>
-                            <div class="icon-box-info icon-box-lg">
-                              <i class="mdi mdi-cart"></i>
-                            </div>
-                          </div>
-                        </div>
-                        <p class="text-muted mb-0">The total wallet balance is directly related to the platform's potential revenue. High wallet balances may lead to increased transaction fees and other monetization opportunities.</p>
-                      </div>
-                    </div>
-                    <div class="carousel-item">
-                      <div class="card-body border-bottom">
-                        <p class="card-title red">WALLET HISTORY RECHARGE</p>
-                        <div class="row">
-                          <div class="col-6">
-                            <div class="d-flex align-items-center ms-2">
-                              <h2 class="font-weight-bold mb-0 me-1 rechargeCount">0</h2>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="card-body">
-                        <div class="d-flex align-items-center justify-content-between mb-3">
-                          <div>
-                            <p>Recharge total amount</p>
-                            <h2 class="mb-0 totalRechargeAmount">0</h2>
-                          </div>
-                          <div>
-                            <div class="icon-box-info icon-box-lg">
-                              <i class="mdi mdi-cart"></i>
-                            </div>
-                          </div>
-                        </div>
-                        <p class="text-muted mb-0">The total wallet balance is directly related to the platform's potential revenue. High wallet balances may lead to increased transaction fees and other monetization opportunities.</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>    
-              </div>
-            </div>
-            <div class="col-md-6 col-xl-3 grid-margin stretch-card">
-              <div class="card">
-                <div id="dailyDepositsCarousel" class="carousel slide card-carousel" data-ride="carousel">
-                  <div class="carousel-inner">
-                    <div class="carousel-item active">
-                      <div class="card-body border-bottom">
-                        <p class="card-title red">WALLET HISTORY REFOUND</p>
-                        <div class="row">
-                          <div class="col-6">
-                            <div class="d-flex align-items-center ms-2">
-                              <h2 class="font-weight-bold mb-0 me-1 refoundCount">0</h2>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="card-body">
-                        <div class="d-flex align-items-center justify-content-between mb-3">
-                          <div>
-                            <p>Refound Total amount</p>
-                            <h2 class="mb-0 totalRefoundAmount">0</h2>
-                          </div>
-                          <div>
-                            <div class="icon-box-success icon-box-lg">
-                              <i class="mdi mdi-calendar-heart"></i>
-                            </div>
-                          </div>
-                        </div>
-                        <p class="text-muted mb-0">The total wallet balance is directly related to the platform's potential revenue. High wallet balances may lead to increased transaction fees and other monetization opportunities.</p>
-                      </div>
-                    </div>
-                    <div class="carousel-item">
-                      <div class="card-body border-bottom">
-                        <p class="card-title red">WALLET HISTORY REFOUND</p>
-                        <div class="row">
-                          <div class="col-6">
-                            <div class="d-flex align-items-center ms-2">
-                              <h2 class="font-weight-bold mb-0 me-1 refoundCount">0</h2>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="card-body">
-                        <div class="d-flex align-items-center justify-content-between mb-3">
-                          <div>
-                            <p>Refound Total amount</p>
-                            <h2 class="mb-0 totalRefoundAmount">0</h2>
-                          </div>
-                          <div>
-                            <div class="icon-box-success icon-box-lg">
-                              <i class="mdi mdi-calendar-heart"></i>
-                            </div>
-                          </div>
-                        </div>
-                        <p class="text-muted mb-0">The total wallet balance is directly related to the platform's potential revenue. High wallet balances may lead to increased transaction fees and other monetization opportunities.</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>    
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <p class="card-title red">ADMIN USERS</p>
-                   <div class="spinnerContainer" id="tableLoader">
-                          <div class="item-1"></div>
-                          <div class="item-2"></div>
-                          <div class="item-3"></div>
-                          <div class="item-4"></div>
-                          <div class="item-5"></div>
-                  </div>
-                  <div class="table-responsive">
-                    <div id="table-container" class="usersTable"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 grid-margin stretch-card">
-              <div class="card">
-                    <div class="card-body">
-                      <p class="card-title red">WALLET HISTORY</p>
-                      <div class="spinnerContainer" id="tableLoader1">
-                            <div class="item-1"></div>
-                            <div class="item-2"></div>
-                            <div class="item-3"></div>
-                            <div class="item-4"></div>
-                            <div class="item-5"></div>
-                    </div>
-                    <div class="table-responsive">
-                      <div id="table-container1" class="usersTable1"></div>
-                    </div>
-                  </div>
-              </div>
-            </div>
-          </div>
-          <div class="row hide">
-            <div class="col-md-12 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <p class="card-title">Recent Purchases</p>
-                  <div class="table-responsive">
-                    <table id="recent-purchases-listing" class="table">
-                      <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Status report</th>
-                            <th>Office</th>
-                            <th>Price</th>
-                            <th>Date</th>
-                            <th>Gross amount</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                            <td>Jeremy Ortega</td>
-                            <td>Levelled up</td>
-                            <td>Catalinaborough</td>
-                            <td>$790</td>
-                            <td>06 Jan 2018</td>
-                            <td>$2274253</td>
-                        </tr>
-                        <tr>
-                            <td>Alvin Fisher</td>
-                            <td>Ui design completed</td>
-                            <td>East Mayra</td>
-                            <td>$23230</td>
-                            <td>18 Jul 2018</td>
-                            <td>$83127</td>
-                        </tr>
-                        <tr>
-                            <td>Emily Cunningham</td>
-                            <td>support</td>
-                            <td>Makennaton</td>
-                            <td>$939</td>
-                            <td>16 Jul 2018</td>
-                            <td>$29177</td>
-                        </tr>
-                        <tr>
-                            <td>Minnie Farmer</td>
-                            <td>support</td>
-                            <td>Agustinaborough</td>
-                            <td>$30</td>
-                            <td>30 Apr 2018</td>
-                            <td>$44617</td>
-                        </tr>
-                        <tr>
-                            <td>Betty Hunt</td>
-                            <td>Ui design not completed</td>
-                            <td>Lake Sandrafort</td>
-                            <td>$571</td>
-                            <td>25 Jun 2018</td>
-                            <td>$78952</td>
-                        </tr>
-                        <tr>
-                            <td>Myrtie Lambert</td>
-                            <td>Ui design completed</td>
-                            <td>Cassinbury</td>
-                            <td>$36</td>
-                            <td>05 Nov 2018</td>
-                            <td>$36422</td>
-                        </tr>
-                        <tr>
-                            <td>Jacob Kennedy</td>
-                            <td>New project</td>
-                            <td>Cletaborough</td>
-                            <td>$314</td>
-                            <td>12 Jul 2018</td>
-                            <td>$34167</td>
-                        </tr>
-                        <tr>
-                            <td>Ernest Wade</td>
-                            <td>Levelled up</td>
-                            <td>West Fidelmouth</td>
-                            <td>$484</td>
-                            <td>08 Sep 2018</td>
-                            <td>$50862</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row hide">
-            <div class="col-md-4 grid-margin grid-margin-md-0 stretch-card">
-              <div class="card border-0 bg-primary text-white">
-                <div id="downloads-carousel" class="carousel slide card-carousel" data-ride="carousel">
-                  <div class="carousel-inner">
-                    <div class="carousel-item active">
-                      <div class="card-body pb-0">
-                        <p class="card-title text-white">Downloads</p>
-                        <h1>8543</h1>
-                        <h4>Growth 58%</h4>
-                      </div>
-                      <canvas height="110" id="downloads-chart-a"></canvas>
-                    </div>
-                    <div class="carousel-item">
-                      <div class="card-body pb-0">
-                        <p class="card-title text-white">Uploads</p>
-                        <h1>4533</h1>
-                        <h4>Growth 32%</h4>
-                      </div>
-                      <canvas height="110" id="downloads-chart-b"></canvas>
-                    </div>
-                  </div>
-                  <a class="carousel-control-prev control-light" href="#downloads-carousel" role="button" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  </a>
-                  <a class="carousel-control-next control-light" href="#downloads-carousel" role="button" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  </a>
-                </div>  
-              </div>
-            </div>
-            <div class="col-md-4 grid-margin grid-margin-md-0 stretch-card">
-              <div class="card border-0 bg-warning text-white">
-                <div id="feedbacks-carousel" class="carousel slide card-carousel" data-ride="carousel">
-                  <div class="carousel-inner">
-                    <div class="carousel-item active">
-                      <div class="card-body pb-0">
-                        <p class="card-title text-white">feedbacks</p>
-                        <h1>3568</h1>
-                        <h4>Growth 12%</h4>
-                      </div>
-                      <canvas height="110" id="feedbacks-chart-a"></canvas>
-                    </div>
-                    <div class="carousel-item">
-                      <div class="card-body pb-0">
-                        <p class="card-title text-white">feedbacks</p>
-                        <h1>8290</h1>
-                        <h4>Growth 11%</h4>
-                      </div>
-                      <canvas height="110" id="feedbacks-chart-b"></canvas>
-                    </div>
-                  </div>
-                  <a class="carousel-control-prev control-light" href="#feedbacks-carousel" role="button" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  </a>
-                  <a class="carousel-control-next control-light" href="#feedbacks-carousel" role="button" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  </a>
-                </div>  
-              </div>
-            </div>
-            <div class="col-md-4 grid-margin grid-margin-md-0 stretch-card">
-              <div class="card border-0 bg-success text-white">
-                <div id="customers-carousel" class="carousel slide card-carousel" data-ride="carousel">
-                  <div class="carousel-inner">
-                    <div class="carousel-item active">
-                      <div class="card-body pb-0">
-                        <p class="card-title text-white">customers</p>
-                        <h1>4567</h1>
-                        <h4>Growth 31%</h4>
-                      </div>
-                      <canvas height="110" id="customers-chart-a"></canvas>
-                    </div>
-                    <div class="carousel-item">
-                      <div class="card-body pb-0">
-                        <p class="card-title text-white">Users</p>
-                        <h1>1782</h1>
-                        <h4>Growth 62%</h4>
-                      </div>
-                      <canvas height="110" id="customers-chart-b"></canvas>
-                    </div>
-                  </div>
-                  <a class="carousel-control-prev control-light" href="#customers-carousel" role="button" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  </a>
-                  <a class="carousel-control-next control-light" href="#customers-carousel" role="button" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  </a>
-                </div>  
-              </div>
-            </div>
-          </div>
-          
-        </div>
-        <!-- content-wrapper ends -->
-        <!-- partial:partials/_footer.html -->
-        <footer class="footer">
-  <div class="d-sm-flex justify-content-center justify-content-sm-between">
-    <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024 <a
-        href="https://www.bootstrapdash.com/" target="_blank">Bootstrapdash</a>. All rights reserved.</span>
-    <span class="float-none float-sm-end d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i
-        class="mdi mdi-heart text-danger"></i></span>
-  </div>
-</footer>
       </div>
     </div>
   </div>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+  <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-   <!-- Include DataTables JS -->
-   <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+  <!-- DataTables JS -->
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+  <!-- Materialize JS -->
+  <script src="{{ url_for('serve_assets', filename='js/materialize.min.js') }}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.34/moment-timezone-with-data.min.js"></script>
 
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.34/moment-timezone-with-data.min.js"></script>
-
-   
-</body>
-
-</html>
-<script>
-  let token = sessionStorage.getItem("access_token");
-  let username = sessionStorage.getItem("username");
-if (!token || !username) {
-    window.location.href = "/";
-}
-  $(document).ready(function() {
-    // Initialize the dropdown on click
-    $('#profileDropdown').on('click', function(e) {
-      e.preventDefault(); // Prevent the default link behavior
-      $(this).next('.dropdown-menu').toggleClass('show'); // Toggle the dropdown menu
-    });
-
-    // Close the dropdown when clicking outside
-    $(document).on('click', function(e) {
-      if (!$(e.target).closest('.nav-profile').length) {
-        $('.dropdown-menu').removeClass('show'); // Hide the dropdown menu
-      }
-    });
-
-    $('#manageUsersLink').on('click', function(event) {
-        event.preventDefault(); // Prevent default anchor click behavior
-
-        // Collapse other open menus if needed
-        $('#auth').collapse('toggle');
-      });
-      getAdminUsers();
-      getWalletHistory();
-  });
-$(".userName").html(username);
-  function getAdminUsers() {
+  <script>
+    let token = sessionStorage.getItem("access_token");
+    let username = sessionStorage.getItem("username");
     if (!token || !username) {
+      M.toast({
+        html: 'Your session expired. Please login again.'
+      });
       window.location.href = "/";
     }
-    const headers = {
+    $(document).ready(function() {
+      getAdminUsers();
+      getWalletHistory();
+    });
+
+    function getAdminUsers() {
+      $("#adminLoader").removeClass("hide");
+      $("#adminTableContainer").html("");
+      if (!token || !username) {
+        M.toast({
+          html: 'Your session expired. Please login again.'
+        });
+        window.location.href = "/";
+      }
+      const headers = {
         "Content-Type": "application/json",
         "Authorization": "Bearer " + token
-    };
-    const payload = {
+      };
+      const payload = {
         username: username
-    };
-    let url = "https://khazanapay.net/admin/getUsers";
-    $.ajax({
+      };
+      let url = "https://khazanapay.net/admin/getUsers";
+      $.ajax({
         url: url,
         type: "GET",
         data: JSON.stringify(payload),
         headers: headers,
         success: function(response) {
-            $("#tableLoader").addClass("hide");
-            createTable(response);
-            $(".tableLoader").removeClass("hide");
+          $("#adminLoader").addClass("hide");
+          createAdminUserTable(response);
         },
         error: function(xhr, status, error) {
-            alert("Something went wrong. Please login again.");
-            window.location.href = "/";
-            if (xhr.responseJSON && xhr.responseJSON.errorMsg) {
-                var errorMessage = xhr.responseJSON.errorMsg;
-                console.log("Error message from backend:", errorMessage);
-            }
+          M.toast({
+            html: 'Your session expired. Please login again.'
+          });
+          window.location.href = "/";
+          if (xhr.responseJSON && xhr.responseJSON.errorMsg) {
+            var errorMessage = xhr.responseJSON.errorMsg;
+            console.log("Error message from backend:", errorMessage);
+          }
         },
-    });
+      });
+    }
 
-}
-
-function createTable(data) {
- // data.reverse();
-    var activeUserCount = 0;
-    var unActiveUserCount = 0;
-    var activeUsersTotalWallet = 0;
-    var inActiveTotalWallet = 0;
-    if (data) {
+    function createAdminUserTable(data) {
+      var activeUserCount = 0;
+      var unActiveUserCount = 0;
+      var activeUsersTotalWallet = 0;
+      var inActiveTotalWallet = 0;
+      if (data) {
         let headers = ["User Name", "First Name", "Last Name", "Phone No.", "Wallet", "Status"];
 
-        let $table = $('<table class="table" id="adminUserTable"></table>');
-        let $headerRow = $('<thead class="tableHeader"></thead>');
+        let $table = $('<table class="responsive-table highlight" id="adminUsersTable"></table>');
+        let $headerRow = $('<thead class="tabelheader"></thead>');
         let $headerRowContent = $("<tr></tr>");
 
         headers.forEach(function(headerText) {
-            $headerRowContent.append($("<th scope='col' class='redHeader'></th>").text(headerText));
+            $headerRowContent.append($("<th></th>").text(headerText));
         });
         $headerRow.append($headerRowContent);
         $table.append($headerRow);
@@ -1046,13 +224,12 @@ function createTable(data) {
         let $tableBody = $("<tbody></tbody>");
         var dataObj = data;
         dataObj.forEach(function(transaction) {
-            let $row = $("<tr scope='row'></tr>");
+            let $row = $("<tr></tr>");
             $row.append($("<td></td>").text(transaction["username"]));
             $row.append($("<td></td>").text(transaction["first_name"]));
             $row.append($("<td></td>").text(transaction["last_name"]));
             $row.append($("<td></td>").text(transaction["phone_number"]));
             $row.append($("<td></td>").text(transaction["payout_wallet"]));
-           // parseFloat(str)
             var status = transaction["kyc_status"];
             if (status == "True"){
               $row.append($("<td></td>").text("Active"));
@@ -1065,25 +242,29 @@ function createTable(data) {
             }
             $tableBody.append($row);
         });
-        $(".activeUsersTotalWallet").html(activeUsersTotalWallet);
-        $(".inactiveTotalWallet").text(inActiveTotalWallet);
-        $(".inActiveUsersCount").text(unActiveUserCount);
-        $(".numOfActiveUsers").html(activeUserCount);
         $table.append($tableBody);
-        // Initialize DataTable
-        $("#table-container").append($table);
-        $('#adminUserTable').DataTable({
-            "pageLength": 10,
-            "order": []
-        });
-    } else {
-        $("#table-container").append("<p>No transactions found.</p>");
-    }
-}
+        $("#adminTableContainer").append($table);
 
-function getWalletHistory() {
+        // Initialize DataTable
+        $('#adminUsersTable').DataTable({
+          paging: true, // Enable pagination
+          searching: true, // Enable search
+          ordering: true, // Enable column ordering
+          pageLength: 5, // Set the number of rows per page
+        });
+      } else {
+        $("#adminTableContainer").append("<p>No transactions found.</p>");
+      }
+    }
+
+
+    function getWalletHistory() {
+    $("#walletLoader").removeClass("hide");
     if (!token || !username) {
-      window.location.href = "/";
+      M.toast({
+          html: 'Your session expired. Please login again.'
+        });
+        window.location.href = "/";
     }
     const headers = {
         "Content-Type": "application/json",
@@ -1099,13 +280,14 @@ function getWalletHistory() {
         data: JSON.stringify(payload),
         headers: headers,
         success: function(response) {
-            $("#tableLoader1").addClass("hide");
+            $("#walletLoader").addClass("hide");
             createWalletHistoryTable(response);
-            $(".tableLoader1").removeClass("hide");
         },
         error: function(xhr, status, error) {
-          alert("Something went wrong. Please login again.");
-            window.location.href = "/";
+          M.toast({
+            html: 'Your session expired. Please login again.'
+          });
+          window.location.href = "/";
             if (xhr.responseJSON && xhr.responseJSON.errorMsg) {
                 var errorMessage = xhr.responseJSON.errorMsg;
                 console.log("Error message from backend:", errorMessage);
@@ -1115,8 +297,9 @@ function getWalletHistory() {
 
 }
 
+
 function createWalletHistoryTable(data) {
- // data.reverse();
+    data.reverse();
     var rechargeCount = 0;
     var refoundCount = 0;
     var totalRechargeAmount = 0;
@@ -1124,12 +307,12 @@ function createWalletHistoryTable(data) {
     if (data) {
         let headers = ["Id", "Username", "Amount", "Transaction Type", "Reason", "Date"];
 
-        let $table = $('<table class="table" id="walletHistoryTable"></table>');
-        let $headerRow = $('<thead class="tableHeader"></thead>');
+        let $table = $('<table class="responsive-table highlight" id="walletHistoryTable"></table>');
+        let $headerRow = $('<thead class="tabelheader"></thead>');
         let $headerRowContent = $("<tr></tr>");
 
         headers.forEach(function(headerText) {
-            $headerRowContent.append($("<th scope='col' class='redHeader'></th>").text(headerText));
+            $headerRowContent.append($("<th></th>").text(headerText));
         });
         $headerRow.append($headerRowContent);
         $table.append($headerRow);
@@ -1137,7 +320,7 @@ function createWalletHistoryTable(data) {
         let $tableBody = $("<tbody></tbody>");
         var dataObj = data;
         dataObj.forEach(function(transaction) {
-            let $row = $("<tr scope='row'></tr>");
+            let $row = $("<tr></tr>");
             $row.append($("<td></td>").text(transaction["id"]));
             $row.append($("<td></td>").text(transaction["username"]));
             $row.append($("<td></td>").text(transaction["amount"]));
@@ -1159,9 +342,9 @@ function createWalletHistoryTable(data) {
         });
         $table.append($tableBody);
         // Initialize DataTable
-        $("#table-container1").append($table);
+        $("#walletTableContainer").append($table);
         $('#walletHistoryTable').DataTable({
-            "pageLength": 5,
+            "pageLength": 10,
             "order": [],
             "lengthMenu": [ // Options available in the "Show entries" dropdown
               [5, 10, 25, 50, 100, 500, 1000], // Values that determine page length
@@ -1174,12 +357,12 @@ function createWalletHistoryTable(data) {
         $(".totalRefoundAmount").html(totalRefoundAmount);
 
     } else {
-        $("#table-container1").append("<p>No transactions found.</p>");
+        $("#walletTableContainer").append("<p>No transactions found.</p>");
     }
 }
 
 
 
-
-</script>
-
+  </script>
+</body>
+</html>
