@@ -13,11 +13,21 @@ def dashBoard():
 
 @app.route('/admin/userWalletAndKycUpdate' , methods=['GET'])
 def userWalletKycUpdate():
-    return render_template('manageUser.html')
+    return render_template('manageUsers.html')
 
 @app.route('/assets/<path:filename>')
 def serve_assets(filename):
     return send_from_directory('assets', filename)
+
+
+@app.route('/JQuerySetUp/<path:filename>')
+def serve_JQuerySetUp(filename):
+    return send_from_directory('JQuerySetUp', filename)
+
+
+@app.route('/templates/<path:filename>')
+def serve_JQuery(filename):
+    return send_from_directory('templates', filename)
 
 if __name__ == '__main__':
     app.run(debug=True)
