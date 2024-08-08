@@ -14,8 +14,7 @@
     body {
       background-color: aliceblue !important;
       font-size: large;
-      font-style: oblique;
-      font-family: cursive;
+      
     }
     .headerRow {
       background-color: #031403 ;
@@ -46,7 +45,7 @@
       margin-top: -3rem;
     }
     span {
-      font-weight: 800 !important;
+      font-weight: bold !important;
       color: red;
     }
     .dataTables_wrapper .dataTables_filter input {
@@ -202,7 +201,7 @@
 
       <div class="row center-align">
           <div>
-            <a href="#!" class="waves-effect waves-light btn rechargeBtn" onclick="creditOrDebitUserWallet()">Credit</a>
+            <a href="#!" class="waves-effect waves-light btn rechargeBtn" id ="creditOrDebitBtn" onclick="creditOrDebitUserWallet()">Credit</a>
           </div>
       </div>
     </div>
@@ -233,6 +232,7 @@
       $('select').formSelect();
       getUserDetails();
     });
+    var isProcessing = false;
 
     function getUserDetails() {
       $("#manageLoader").removeClass("hide");
@@ -495,8 +495,13 @@
           $("#rechargeAmount").addClass("invalid");
           return;
       } else if (transType === "Credit"){
-        var $button = $(".rechargeBtn");
-		 	  $button.prop("disabled", true);
+        if (isProcessing) {
+          M.toast({
+            html: 'Please wait your previous transaction is processing.'
+          });
+          return;
+        }
+        isProcessing = true;
           let url = "https://khazanapay.net/admin/rechargeWallet";
           const headers = {
             "Authorization": "Bearer "+access_token,
@@ -513,7 +518,7 @@
             headers: headers,
             data: JSON.stringify(payload),
             success: function (response) {
-              $button.prop("disabled", false);
+              isProcessing = false;
               $(".rechargeErrorSpan").removeClass("red-text");
               $(".rechargeErrorSpan").addClass("green-text");
               $(".rechargeErrorSpan").text("Payment done successfully.");
@@ -523,7 +528,7 @@
               }, 2000);
             },
             error: function (xhr, status, error) {
-              $button.prop("disabled", false);
+              isProcessing = false;
               alert("Something went wrong. Please login again.");
               window.location.href = "/";
               return;
