@@ -76,6 +76,17 @@
     .modal {
       max-height: fit-content;
     }
+
+    #modalLoader {
+    max-width: fit-content;
+    overflow: visible;
+    top: 30% !important;
+    background-color: #dde6e5;
+}
+.material-icons {
+  margin-left: -5rem;
+}
+
   </style>
 </head>
 <body>
@@ -205,7 +216,60 @@
           </div>
       </div>
     </div>
+  </div>
+
+  <div id = "modalLoader" class="modal">
+    <div class="modal-content center-align">
+      <div class="preloader-wrapper big active modalLoaderContent">
+        <div class="spinner-layer spinner-blue">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+  
+        <div class="spinner-layer spinner-red">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+  
+        <div class="spinner-layer spinner-yellow">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+  
+        <div class="spinner-layer spinner-green">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+
+      <i class="large material-icons hide" id="successStatus">check_circle</i>
+      <i class="large material-icons hide" id="errorStatus">error</i>
+
     </div>
+  </div>
+
+
+
   </div>
 
   <!-- jQuery -->
@@ -476,6 +540,7 @@
       var rechargeAmount = $("#rechargeAmount").val();
       var transType = $("#transType").val();
       $("#rechargeAmount").removeClass("invalid");
+      $(".modalLoaderContent").addClass("active");
 
       if (currentStatus === "Active") {
         M.toast({
@@ -495,6 +560,8 @@
           $("#rechargeAmount").addClass("invalid");
           return;
       } else if (transType === "Credit"){
+        $("#successStatus").addClass("hide");
+        $("#errorStatus").addClass("hide");
         if (isProcessing) {
           M.toast({
             html: 'Please wait your previous transaction is processing.'
@@ -512,6 +579,7 @@
             amount : rechargeAmount
           };
 
+          $('#modalLoader').modal('open');
           $.ajax({
             url: url,
             type: "POST",
@@ -519,15 +587,15 @@
             data: JSON.stringify(payload),
             success: function (response) {
               isProcessing = false;
-              $(".rechargeErrorSpan").removeClass("red-text");
-              $(".rechargeErrorSpan").addClass("green-text");
-              $(".rechargeErrorSpan").text("Payment done successfully.");
-              $(".successOrErrorStatus").text("");
+              $(".modalLoaderContent").removeClass("active");
+              $("#successStatus").removeClass("hide");
               setTimeout(function() {
                 location.reload();
-              }, 2000);
+              }, 3000);
             },
             error: function (xhr, status, error) {
+              $(".modalLoaderContent").removeClass("active");
+              $("#errorStatus").removeClass("hide");
               isProcessing = false;
               alert("Something went wrong. Please login again.");
               window.location.href = "/";
