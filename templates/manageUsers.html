@@ -589,10 +589,9 @@
               isProcessing = false;
               $(".modalLoaderContent").removeClass("active");
               $("#successStatus").removeClass("hide");
-              return;
               setTimeout(function() {
                 location.reload();
-              }, 2000);
+              }, 3000);
             },
             error: function (xhr, status, error) {
               $(".modalLoaderContent").removeClass("active");
