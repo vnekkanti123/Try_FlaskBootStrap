@@ -120,7 +120,7 @@ function createUserDetailsTable(data) {
         $('#userDetailsTable').DataTable({
             paging: true,
             searching: true,
-            ordering: true,
+            ordering: false,
             pageLength: 5,
         });
 
@@ -308,7 +308,7 @@ function creditOrDebitUserWallet() {
 function createWalletHistoryTable(data) {
     data.reverse();
     if (data) {
-        let headers = ["Id", "User Name", "Client Id", "Amount", "Transaction Type", "Date", "Reason"];
+        let headers = ["User Name", "Client Id", "Amount", "Transaction Type", "Date", "Reason"];
 
         let $table = $('<table class="highlight" id="walletHistoryTable"></table>');
 
@@ -326,7 +326,6 @@ function createWalletHistoryTable(data) {
         data.forEach(function(item) {
             let $row = $("<tr></tr>");
 
-            let id = item["id"];
             let username = item["username"];
             let client_id = item["client_id"];
             let amount = item["amount"];
@@ -336,7 +335,6 @@ function createWalletHistoryTable(data) {
             const formattedDate = date.tz('Asia/Kolkata').format('DD-MM-YYYY HH:mm:ss');
             let reason = item["reason"];
 
-            $row.append($("<td></td>").text(id));
             $row.append($("<td></td>").text(username));
             $row.append($("<td></td>").text(client_id));
             $row.append($("<td></td>").text(amount));
@@ -352,7 +350,7 @@ function createWalletHistoryTable(data) {
         $table.DataTable({
             paging: true,
             searching: true,
-            ordering: true,
+            ordering: false,
             pageLength: 5,
             order: [], // No initial order; displays data as provided
         });
