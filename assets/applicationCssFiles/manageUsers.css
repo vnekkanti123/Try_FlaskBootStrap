@@ -1,0 +1,115 @@
+/* Ensure that sidenav trigger is always visible */
+.sidenav-trigger {
+    display: inline-block !important;
+}
+.sidenav-trigger i {
+    color: #000;
+   /* Set icon color */
+}
+/* Initial styling for main content to ensure layout shift */
+#main {
+    transition: margin-left .5s;
+    /* margin-left: 250px; */
+   /* Start with the sidenav open */
+}
+/* Initial sidenav open */
+/* .sidenav {
+    width: 250px;
+    transform: translateX(0);
+} */
+/* Media query to handle responsive design */
+@media screen and (max-width: 992px) {
+    #main {
+        margin-left: 0;
+   }
+    .sidenav {
+        transform: translateX(-250px);
+       /* Start with sidenav closed on smaller screens */
+   }
+}
+.sidenav-overlay {
+    background-color: rgba(0, 0, 0, 0) !important 
+}
+.dataTables_wrapper .dataTables_filter input {
+    height: auto;
+}
+.card {
+    overflow: auto;
+}
+#walletTableContainer .dataTables_wrapper .dataTables_filter {
+    margin-right: 2rem;
+}
+.dataTables_wrapper .dataTables_length{
+    display: none;
+}
+.homeHeader {
+    margin-right: 1rem;
+}
+nav {
+    background-color: darkgreen  !important;
+}
+
+.card-title {
+    margin-top: -3rem;
+    margin-bottom: -3rem;
+}
+
+
+
+table {
+    width: 100%;
+    margin: 20px auto !important;
+    border-collapse: separate !important; /* Allows border-radius to be visible */
+    border-spacing: 0 !important; /* Removes space between borders */
+    border: 1px solid #ddd !important; /* Adds border around the table */
+    border-radius: 8px !important; /* Rounds the corners of the table */
+    overflow: hidden !important; /* Ensures content stays within rounded corners */
+}
+
+th, td {
+    border-bottom: 1px solid #ddd !important; /* Adds border to bottom of table cells */
+    padding: 12px !important; /* Adds padding inside table cells */
+    text-align: center !important; /* Aligns text to the left */
+}
+
+th {
+    background-color: #f2f2f2 !important; /* Adds background color to header cells */
+}
+
+tr:last-child td {
+    border-bottom: none !important; /* Removes bottom border from last row */
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9 !important; /* Adds background color to even rows for striping */
+}
+
+tr:hover {
+    background-color: #f1f1f1 !important; /* Changes background color on hover */
+}
+
+th, td {
+    border: 1px solid #ddd !important; /* Adds border to each cell */
+    padding: 12px !important; /* Adds padding inside table cells */
+    text-align: center !important; /* Aligns text to the left */
+}
+
+#userDetailsTable_filter, #walletHistoryTable_filter {
+    margin-right: 1.9rem  !important;
+}
+
+.menuIcon{
+    color: white !important;
+}
+
+.toast, .modal {
+    border-radius: 14px !important;
+  }
+  
+.btn{
+    border-radius: 14px !important;
+}
+
+#walletHistoryTable th, td {
+    padding: 20px !important; 
+}
