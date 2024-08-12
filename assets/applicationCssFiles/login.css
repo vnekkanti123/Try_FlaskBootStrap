@@ -1,0 +1,30 @@
+.img-fluid {
+    height: 100vh;
+    object-fit: cover; /* Ensures the image covers the whole div */
+    width: -webkit-fill-available;
+}
+.card {
+    border: 0 !important;
+}
+.card-container {
+    max-width: 400px; /* Adjust as needed for your design */
+    width: 100%; /* Ensure the card takes full width available */
+}
+/* Ensure the column can grow if content is large */
+.login-column {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.p-0 {
+    margin-left: -1rem;
+}
+
+.toast {
+    border-radius: 14px !important;
+  }
+
+  .btn, .card{
+    border-radius: 14px !important;
+}
