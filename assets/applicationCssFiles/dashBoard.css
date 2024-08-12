@@ -64,38 +64,29 @@ table {
     margin: 20px auto !important;
     border-collapse: separate !important; /* Allows border-radius to be visible */
     border-spacing: 0 !important; /* Removes space between borders */
-    border: 1px solid #ddd !important; /* Adds border around the table */
+    /* border: 1px solid #ddd !important;  */
     border-radius: 8px !important; /* Rounds the corners of the table */
     overflow: hidden !important; /* Ensures content stays within rounded corners */
 }
 
 th, td {
-    border-bottom: 1px solid #ddd !important; /* Adds border to bottom of table cells */
+    border-bottom: 1px solid #ddd !important;
     padding: 12px !important; /* Adds padding inside table cells */
-    text-align: center !important; /* Aligns text to the left */
+    text-align: left !important; /* Aligns text to the left */
 }
 
-th {
-    background-color: #f2f2f2 !important; /* Adds background color to header cells */
-}
+/* th {
+    background-color: #f2f2f2 !important;
+} */
 
 tr:last-child td {
     border-bottom: none !important; /* Removes bottom border from last row */
-}
-
-tr:nth-child(even) {
-    background-color: #f9f9f9 !important; /* Adds background color to even rows for striping */
 }
 
 tr:hover {
     background-color: #f1f1f1 !important; /* Changes background color on hover */
 }
 
-th, td {
-    border: 1px solid #ddd !important; /* Adds border to each cell */
-    padding: 20px !important; /* Adds padding inside table cells */
-    text-align: center !important; /* Aligns text to the left */
-}
 
 
 #adminUsersTable_filter {
@@ -109,3 +100,7 @@ th, td {
 .toast {
     border-radius: 14px !important;
   }
+.card {
+    margin: 3rem !important;
+    border-radius: 14px !important;
+}

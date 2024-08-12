@@ -45,7 +45,7 @@ function getAdminUsers() {
     if (data) {
       let headers = ["User Name", "First Name", "Last Name", "Phone No.", "Wallet", "Status"];
 
-      let $table = $('<table class="highlight" id="adminUsersTable"></table>');
+      let $table = $('<table class=" centered highlight" id="adminUsersTable"></table>');
       let $headerRow = $('<thead class="tabelheader"></thead>');
       let $headerRowContent = $("<tr></tr>");
 
@@ -141,7 +141,7 @@ function createWalletHistoryTable(data) {
   if (data) {
       let headers = ["Username", "Amount", "Transaction Type", "Reason", "Date"];
 
-      let $table = $('<table class="highlight" id="walletHistoryTable"></table>');
+      let $table = $('<table class="centered highlight" id="walletHistoryTable"></table>');
       let $headerRow = $('<thead class="tabelheader"></thead>');
       let $headerRowContent = $("<tr></tr>");
 
@@ -178,7 +178,7 @@ function createWalletHistoryTable(data) {
       $("#walletTableContainer").append($table);
       $('#walletHistoryTable').DataTable({
           "pageLength": 5,
-          "order": [],  
+          "ordering": false, 
           "lengthMenu": [ // Options available in the "Show entries" dropdown
             [5, 10, 25, 50, 100, 500, 1000], // Values that determine page length
             [5, 10, 25, 50, 100, 500, "All"] // Display text for each value
