@@ -1,152 +1,72 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Khazana Pay Admin</title>
-    <link rel="stylesheet" href="{{ url_for('serve_assets', filename='css/materialize.css') }}">
+    <link rel="stylesheet" href="{{ url_for('serve_assets', filename='bootstrapCss/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('serve_assets', filename='css/materialize.min.css') }}">
-  </head>
-  <style>
-    body {
-      background-color: aliceblue !important;
-    }
-
-    .headerRow {
-      background-color: blue;
-      color: white;
-      font-size: x-large;
-      margin-top: -3rem;
-    }
-
-    .homeHeader {
-      font-weight: 600 !important;
-    }
-
-    .card-panel {
-      border-radius: 14px !important;
-    }
-
-    .loginCard {
-      /* margin-left: 22rem !important; */
-      margin-top: 5rem !important;
-    }
-
-    .signSpan {
-      font-size: xx-large;
-      font-weight: 700;
-    }
-
-    .btn {
-      background-color: #2196f3;
-      width: 50%;
-      border-radius: 14px;
-    }
-
-    label {
-      font-size: larger !important;
-    }
-    .toast {
-        border-radius: 14px !important; 
-    }
-    nav {
-        background-color: #20208f !important;
-        margin-top: -3rem;
-    }
-  </style>
-  <body>
-    <nav>
-      <div class="nav-wrapper">
-        <h1 class="homeHeader"><a href="#" class="brand-logo center">khazanapay Admin</a></h1>
-      </div>
-    </nav>
-    <div class="container">
-      <div class="container">
-        <div class="container">
-      <div class="row">
-        <div class="col s12 m12 l12 xl12 loginCard center-align">
-          <div class="card-panel center">
-            <div class="progress hide">
-              <div class="indeterminate"></div>
+    <link rel="stylesheet" href="{{ url_for('serve_assets', filename='applicationCssFiles/login.css') }}">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Logo Section -->
+            <div class="col-sm-12 col-md-12 col-xl-6 p-0">
+                <img class="img-fluid" src="{{ url_for('serve_assets', filename='images/KhazanaGreenLogo.png') }}" alt="Description of Image">
             </div>
-            <span class="signSpan">Login</span>
-            <br>
-            <br>
-            <br>
-            <div class="row">
-              <form class="col s12">
-                <div class="row">
-                  <div class="input-field col s12">
-                    <input placeholder="Please enter mobile number" id="mobileNumber" type="tel" class="validate">
-                    <label for="mobileNumber">Mobile Number</label>
-                  </div>
-                  <div class="input-field col s12">
-                    <input id="password" type="password" class="validate">
-                    <label for="password">Password</label>
-                  </div>
-                  <div class="input-field col s12">
-                    <a class="waves-effect waves-light btn" onclick="submitLogin()">Submit</a>
-                  </div>
+            <!-- Content Login Section -->
+            <div class="col-sm-12 col-md-12 col-xl-6 login-column">
+                <div class="card card-container">
+                    <div class="card-body">
+                        <!-- Adding extra content to ensure overflow -->
+                        <div class="progress hide">
+                            <div class="indeterminate"></div>
+                          </div>
+
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <h3>Sign In</h3>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <label for="mobileNumber" class="form-label">Mobile Number</label>
+                                <input type="tel" class="form-control" id="mobileNumber" placeholder="Enter your mobile number">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" placeholder="Enter your password">
+                            </div>
+                            <center>
+                                <div class="col-12">
+                                    <button class="btn btn-primary w-50" onclick="submitLogin()">Login</button>
+                                </div>
+                            </center>
+                        </div>
+                    </div>
                 </div>
-              </form>
             </div>
-          </div>
         </div>
-      </div>
-      </div>
-      </div>
     </div>
-  </body>
-</html>
-<script src="{{ url_for('serve_assets', filename='js/materialize.js') }}"></script>
-<script src="{{ url_for('serve_assets', filename='js/materialize.min.js') }}"></script>
-<script src="{{ url_for('serve_JQuerySetUp', filename='external/jquery/jquery.js') }}"></script>
-<script>
-let token = sessionStorage.getItem("access_token");
-let username = sessionStorage.getItem("username");
-if (token || username) {
-  sessionStorage.removeItem("access_token");
-  sessionStorage.removeItem("username");
-}
 
-  function submitLogin() {
-    $(".progress").removeClass("hide");
-    var mobile = $("#mobileNumber").val();
-    var password = $("#password").val();
-    if (!mobile || !password) {
-      M.toast({html: 'Please enter your login details.'});
-      $("#mobileNumber").addClass("invalid");
-      $("#password").addClass("invalid");
-      $(".progress").addClass("hide");
-      return;
-    } else {
-      $("#mobileNumber").addClass("valid");
-      $("#password").addClass("valid");
-      let url = "https://khazanapay.net/admin/login";
-      const headers = {
-        "Content-Type": "application/json",
-      };
-      const payload = {
-        phone_number: mobile,
-        password: password,
-      };
-      $.ajax({
-        url: url,
-        type: "POST",
-        headers: headers,
-        data: JSON.stringify(payload),
-        success: function(response) {
-          sessionStorage.setItem("access_token", response.access_token);
-          sessionStorage.setItem("username", response.userName);
-          window.location.href = "/admin/dashBoard"
-        },
-        error: function(xhr, status, error) {
-          M.toast({html: 'Please check mobile number or password was incorrect.'});
-          $("#mobileNumber").addClass("invalid");
-          $("#password").addClass("invalid");
-          $(".progress").addClass("hide");
-          return;
-        },
-      });
-    }
-  }
-</script>
+    <script src="{{ url_for('serve_JQuerySetUp', filename='external/jquery/jquery.js') }}"></script>
+    <script src="{{ url_for('serve_assets', filename='js/materialize.min.js') }}"></script>
+    <script src="{{ url_for('serve_assets', filename='applicationJsFiles/login.js') }}"></script>
+    <script>
+        let token = sessionStorage.getItem("access_token");
+        let username = sessionStorage.getItem("username");
+
+        $(document).ready(function() {
+            if (token || username) {
+                sessionStorage.removeItem("access_token");
+                sessionStorage.removeItem("username");
+            }
+        });
+    </script>
+</body>
+</html>
