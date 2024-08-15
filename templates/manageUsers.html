@@ -33,25 +33,32 @@
 </head>
 <body>
 
-    <ul id="slide-out" class="sidenav">
-        <li><div class="user-view">
-          <div class="background">
-           <img src="{{ url_for('serve_assets', filename='images/officeImage.png') }}" alt="Description of Image">
-          </div>
-          <a href="#user"> <img class="circle" src="{{ url_for('serve_assets', filename='images/yuna.jpg') }}" alt="Description of Image"></a>
-          <a href="#name"><span class="white-text name">John Doe</span></a>
-          <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
-        </div></li>
-        <li><a class="waves-effect" href="/admin/dashBoard">Dashboard</a></li>
-        <li class="active"><a class="waves-effect" href="/admin/userWalletAndKycUpdate">Manage Users</a></li>
-        <li><a class="waves-effect" href="/">Log Out</a></li>
-    </ul>
-    <nav>
-        <div class="nav-wrapper">
-            <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons menuIcon">menu</i></a>
-            <h3 class="right-align homeHeader"><b>Khazanapay</b></h3>
-        </div>
-    </nav>
+      
+  <ul id="slide-out" class="sidenav">
+    <li><div class="user-view">
+      <div class="background center-align">
+       <img src="{{ url_for('serve_assets', filename='images/KhazanaGreenMiniLogo.png') }}" alt="Description of Image" >
+      </div>
+      <!-- <a href="#user"> <img class="circle" src="{{ url_for('serve_assets', filename='images/yuna.jpg') }}" alt="Description of Image"></a> -->
+        <br><br>
+      <a href="#name" class="center-align"><span class="white-text name">John Doe</span></a>
+      <!-- <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a> -->
+    </div></li>
+    <li><a class="waves-effect" href="/admin/dashBoard"><i class="material-icons">home</i>Dashboard</a></li>
+    <li class="active"><a class="waves-effect" href="/admin/userWalletAndKycUpdate"><i class="material-icons">settings_applications</i>Manage Users</a></li>
+    <li><a class="waves-effect" href="/"><i class="material-icons">error_outline</i>Log Out</a></li>
+  </ul>
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons menuIcon">menu</i></a>
+      <!-- <h4 class="right-align homeHeader"><b>KhazanaPay </b></h4> -->
+
+      <header class="header">
+        <span class="highlight">K</span><span class="small-text">hazana</span>
+        <span class="highlight">P</span><span class="small-text">ay</span>
+    </header>
+    </div>
+  </nav>
 
     <div id="main">
         <div class="col s12 m12 l12 xl12">
@@ -85,12 +92,10 @@
             </div>
           </div>
           <div class="col s12 m12 l12 xl12">
-            <div class="card">
+            <div class="card walletCard hide">
               <div class="card-content center-align">
                 <span class="card-title"><h3>Wallet History</h3></span>
-                <span class="blue-text">If you want to see any history of users, please click the history button you want.</span><br><br>
                 <span class="userNameSpan green-text"></span>
-               
                 <div class="preloader-wrapper big active hide" id="walletHistoryLoader">
                   <div class="spinner-layer spinner-blue">
                     <div class="circle-clipper left"><div class="circle"></div></div>
