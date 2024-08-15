@@ -27,6 +27,7 @@ function getUserDetails() {
 
 
 function showHistoryForUser(userName) {
+    $(".walletCard").addClass("hide");
     $("#walletHistoryLoader").removeClass("hide");
     $("#walletDetailsTableContainer").html("");
     let url = "https://khazanapay.net/admin/getWalletHistoryForUser";
@@ -47,6 +48,7 @@ function showHistoryForUser(userName) {
             var userList = response;
             $("#walletHistoryLoader").addClass("hide");
             $(".userNameSpan").text("User Name: " + userName);
+            $(".walletCard").removeClass("hide");
             createWalletHistoryTable(userList);
             document.getElementById('walletDetailsTableContainer').scrollIntoView({
                 behavior: 'smooth'
@@ -121,7 +123,7 @@ function createUserDetailsTable(data) {
             paging: true,
             searching: true,
             ordering: false,
-            pageLength: 5,
+            pageLength: 10,
         });
 
         // Attach onChange event handler to dropdowns
@@ -351,7 +353,7 @@ function createWalletHistoryTable(data) {
             paging: true,
             searching: true,
             ordering: false,
-            pageLength: 5,
+            pageLength: 10,
             order: [], // No initial order; displays data as provided
         });
     } else {

@@ -84,7 +84,7 @@ function getAdminUsers() {
         paging: true, // Enable pagination
         searching: true, // Enable search
         ordering: false, // Enable column ordering
-        pageLength: 5, // Set the number of rows per page
+        pageLength: 10, // Set the number of rows per page
         responsive: true
       });
     } else {
@@ -177,7 +177,7 @@ function createWalletHistoryTable(data) {
       // Initialize DataTable
       $("#walletTableContainer").append($table);
       $('#walletHistoryTable').DataTable({
-          "pageLength": 5,
+          "pageLength": 10,
           "ordering": false, 
           "lengthMenu": [ // Options available in the "Show entries" dropdown
             [5, 10, 25, 50, 100, 500, 1000], // Values that determine page length

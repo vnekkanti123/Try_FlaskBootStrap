@@ -18,20 +18,33 @@
     transform: translateX(0);
 } */
 /* Media query to handle responsive design */
+.sidenav {
+    top: 64px;
+}
 @media screen and (max-width: 992px) {
     #main {
         margin-left: 0;
    }
     .sidenav {
-        transform: translateX(-250px);
+        transform: translateX(-300px);
+        top: 64px;
        /* Start with sidenav closed on smaller screens */
    }
 }
+
+@media screen and (max-width: 604px) {
+
+    .sidenav {
+        top: 56px;
+   }
+}
+
 .sidenav-overlay {
     background-color: rgba(0, 0, 0, 0) !important 
 }
 .dataTables_wrapper .dataTables_filter input {
     height: auto;
+    border-radius: 10px;
 }
 .card {
     overflow: auto;
@@ -44,6 +57,8 @@
 }
 .homeHeader {
     margin-right: 1rem;
+    font-family: cursive;
+    padding: 10px;
 }
 nav {
     background-color: darkgreen  !important;
@@ -89,6 +104,10 @@ tr:hover {
     margin-right: 1.9rem  !important;
 }
 
+.background {
+    background-color: darkgreen;
+}
+
 .menuIcon{
     color: white !important;
 }
@@ -103,9 +122,100 @@ tr:hover {
 
 select {
     height: 2rem !important;
+    width: min-content !important;
+    border-radius: 12px !important;
 }
 
 .card {
     margin: 3rem !important;
     border-radius: 14px !important;
+}
+
+label{
+    display: flex;
+    font-size: 1.3rem;
+}
+h3 {
+    font-size: 1.92rem;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    border-radius: 10px !important;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+
+.header {
+    font-family: 'sans-serif', cursive;
+    font-weight: 700;
+    color: #ffffff; /* White */
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.header .highlight {
+    font-size: 48px; /* Larger size for K and P */
+    color: white; /* Gold */
+    vertical-align: middle;
+    animation: bounce 2s infinite alternate;
+}
+
+.header .small-text {
+    font-size: 30px; /* Smaller size for the rest */
+    font-weight: 400;
+    color: white;
+    transition: color 0.3s ease-in-out;
+}
+
+.header .small-text:hover {
+    color: #000000; /* Gold on hover */
+}
+
+.icon {
+    margin-right: 10px;
+    margin-bottom: 5px;
+    font-size: 36px;
+    color: #ffd700; /* Gold */
+    transition: transform 0.3s ease-in-out;
+}
+
+.icon:hover {
+    transform: scale(1.2); /* Enlarge on hover */
+}
+
+/* Navigation Bar */
+.navbar {
+    background-color: #006400; /* Dark Green */
+    padding: 10px;
+}
+
+/* Keyframe Animations */
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.sidenav .user-view .name {
+    padding-bottom: 10px !important;
 }
