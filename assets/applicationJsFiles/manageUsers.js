@@ -143,6 +143,7 @@ function createUserDetailsTable(data) {
 function updatingUserStatus(userName) {
     var previousUserStatus = "";
     var preWalletBalance = "";
+    $("#transType").val("");
     for (let user of usersListPrev) {
         if (userName === user.username) {
             // Determine KYC status for UI
@@ -178,6 +179,8 @@ function updatingUserStatus(userName) {
             if (preWalletBalance != $("#walletBalance").val()) {
                 location.reload();
             }
+            $("#transType").val("");
+            $('select').formSelect();
         }
     });
 
@@ -208,8 +211,10 @@ function updateUserStatus(userName, selectVal) {
         type: "POST",
         headers: headers,
         data: JSON.stringify(payload),
+        
         success: function(response) {
-            location.reload();
+            getUserDetails();
+            //location.reload();
         },
         error: function(xhr, status, error) {
             alert("Something went wrong. Please try again or please login again and try.");
@@ -279,9 +284,9 @@ function creditOrDebitUserWallet() {
                 M.toast({
                     html: 'Recharged successfully.'
                 });
-                setTimeout(function() {
-                    location.reload();
-                }, 1000);
+               // location.reload();
+               $("#manageUserDetailsModal").modal("close");
+               getUserDetails();
             },
             error: function(xhr, status, error) {
                 $(".progress").addClass("hide");
