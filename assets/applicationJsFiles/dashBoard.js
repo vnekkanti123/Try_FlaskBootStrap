@@ -12,12 +12,11 @@ function getAdminUsers() {
       "Authorization": "Bearer " + token
     };
     const payload = {
-      username: username
+      username: username,
     };
-    let url = "https://khazanapay.net/admin/getUsers";
     $.ajax({
-      url: url,
-      type: "GET",
+      url: "/getUsers",
+      type: "POST",
       data: JSON.stringify(payload),
       headers: headers,
       success: function(response) {
@@ -28,7 +27,7 @@ function getAdminUsers() {
         M.toast({
           html: 'Your session expired. Please login again.'
         });
-        window.location.href = "/";
+        //window.location.href = "/";
         if (xhr.responseJSON && xhr.responseJSON.errorMsg) {
           var errorMessage = xhr.responseJSON.errorMsg;
           console.log("Error message from backend:", errorMessage);
@@ -107,10 +106,10 @@ function getAdminUsers() {
     const payload = {
         username: username
     };
-    let url = "https://khazanapay.net/admin/getWalletHistory";
+    let url = "/getWalletHistory";
     $.ajax({
         url: url,
-        type: "GET",
+        type: "POST",
         data: JSON.stringify(payload),
         headers: headers,
         success: function(response) {
