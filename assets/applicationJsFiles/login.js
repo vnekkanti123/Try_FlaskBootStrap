@@ -11,7 +11,6 @@ function submitLogin() {
     } else {
       $("#mobileNumber").addClass("valid");
       $("#password").addClass("valid");
-      let url = "https://khazanapay.net/admin/login";
       const headers = {
         "Content-Type": "application/json",
       };
@@ -20,7 +19,7 @@ function submitLogin() {
         password: password,
       };
       $.ajax({
-        url: url,
+        url: "/login",
         type: "POST",
         headers: headers,
         data: JSON.stringify(payload),
