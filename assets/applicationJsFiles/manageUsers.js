@@ -2,14 +2,18 @@
 function getUserDetails() {
     $("#manageLoader").removeClass("hide");
     $("#userDetailsTableContainer").html("");
-    let url = "https://khazanapay.net/admin/getUsers";
     const headers = {
-        "Authorization": "Bearer " + access_token,
-    };
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + access_token
+      };
+      const payload = {
+        username: username,
+      };
 
     $.ajax({
-        url: url,
-        type: "GET",
+        url: "/getUsers",
+        type: "POST",
+        data: JSON.stringify(payload),
         headers: headers,
         success: function(response) {
             var userList = response;
@@ -30,7 +34,6 @@ function showHistoryForUser(userName) {
     $(".walletCard").addClass("hide");
     $("#walletHistoryLoader").removeClass("hide");
     $("#walletDetailsTableContainer").html("");
-    let url = "https://khazanapay.net/admin/getWalletHistoryForUser";
     const headers = {
         "Authorization": "Bearer " + access_token,
         "Content-Type": "application/json",
@@ -40,7 +43,7 @@ function showHistoryForUser(userName) {
     };
 
     $.ajax({
-        url: url,
+        url: "/getWalletHistoryForUser",
         type: "POST",
         headers: headers,
         data: JSON.stringify(payload),
@@ -197,7 +200,6 @@ $("#transType").on("change", function() {
 });
 
 function updateUserStatus(userName, selectVal) {
-    let url = "https://khazanapay.net/admin/updateKyc";
     const headers = {
         "Authorization": "Bearer " + access_token,
         "Content-Type": "application/json",
@@ -207,7 +209,7 @@ function updateUserStatus(userName, selectVal) {
         KYC_Status: selectVal,
     };
     $.ajax({
-        url: url,
+        url: "/updateKyc",
         type: "POST",
         headers: headers,
         data: JSON.stringify(payload),
@@ -263,18 +265,18 @@ function creditOrDebitUserWallet() {
         }
         $(".progress").removeClass("hide");
         isProcessing = true;
-        let url = "https://khazanapay.net/admin/rechargeWallet";
         const headers = {
             "Authorization": "Bearer " + access_token,
             "Content-Type": "application/json",
         };
         const payload = {
             username: $("#userName").val(),
-            amount: rechargeAmount
+            amount: rechargeAmount,
+            function: transType
         };
 
         $.ajax({
-            url: url,
+            url: "/UpdateWallet",
             type: "POST",
             headers: headers,
             data: JSON.stringify(payload),
