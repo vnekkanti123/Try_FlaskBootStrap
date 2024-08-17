@@ -132,7 +132,7 @@ function getAdminUsers() {
 
 
 function createWalletHistoryTable(data) {
-  data.reverse();
+  //data.reverse();
   var rechargeCount = 0;
   var refoundCount = 0;
   var totalRechargeAmount = 0;

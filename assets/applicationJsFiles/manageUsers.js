@@ -315,7 +315,7 @@ function creditOrDebitUserWallet() {
 
 
 function createWalletHistoryTable(data) {
-    data.reverse();
+    //data.reverse();
     if (data) {
         let headers = ["User Name", "Client Id", "Amount", "Transaction Type", "Date", "Reason"];
 
