@@ -219,3 +219,18 @@ h3 {
 .sidenav .user-view .name {
     padding-bottom: 10px !important;
 }
+
+.paymentFormResult .left  {
+    font-size: x-large;
+    font-weight: bold;
+}
+.paymentFormResult .paymentText  {
+    float: right;
+    font-size: x-large;
+}
+.statusPaymentStatus{
+    color: green !important;
+}
+.paymentTable{
+    width: 50% !important;
+}

@@ -69,7 +69,7 @@ function getAdminUsers() {
             activeUsersTotalWallet += parseFloat(transaction["payout_wallet"]);
             activeUserCount++;
           } else {
-            $row.append($("<td></td>").text("Not Active"));
+            $row.append($("<td></td>").text("Inactive"));
             inActiveTotalWallet += parseFloat(transaction["payout_wallet"]);
             unActiveUserCount++;
           }
