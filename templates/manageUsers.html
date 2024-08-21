@@ -26,10 +26,6 @@
       max-height: fit-content;
     }
 
-    .contentWidth{
-      width: 30%;
-    }
-
 .modal .btn {
     width: 20%;
 }
@@ -176,7 +172,7 @@ table.striped>tbody>tr:nth-child(odd) {
                 <div class="row">
                   <div class="input-field col s12 m6 l6 xl6">
                     <input placeholder="Please enter recharge amount" id="rechargeAmount" type="number" class="validate">
-                    <label for="rechargeAmount" id="rechargeAmountLabel">Recharge Amount</label>
+                    <label for="rechargeAmount">Recharge Amount</label>
                     <span id="amountInWords" class="statusPaymentStatus" style="display:none;"></span>
                     
                   </div>
@@ -279,12 +275,10 @@ table.striped>tbody>tr:nth-child(odd) {
             $('#rechargeAmount').on('input', function() {
                 let amount = $(this).val();
                 if (amount) {
-                    $('#rechargeAmountLabel').hide();
                     let amountInWords = test(amount);
                     $('#amountInWords').text(amountInWords).show();
                 } else {
                     $('#amountInWords').hide();
-                    $('#rechargeAmountLabel').show();
                 }
             });
 
