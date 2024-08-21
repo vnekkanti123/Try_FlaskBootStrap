@@ -182,7 +182,6 @@ function updatingUserStatus(userName) {
             console.log('Modal opened. Previous status:', previousUserStatus);
         },
         onCloseEnd: function() {
-            $("#manageUserDetailsModal").removeClass("contentWidth");
             if (preWalletBalance != $("#walletBalance").val()) {
                 location.reload();
             }
@@ -305,7 +304,6 @@ function creditOrDebitUserWallet() {
                //$("#manageUserDetailsModal").modal("close");
                getUserDetails();
                $(".paymentForm").addClass("hide");
-               $("#manageUserDetailsModal").addClass("contentWidth");
                $(".paymentFormResult").removeClass("hide");
                $(".statusUserName").text($("#userName").val());
                $(".statusMobileNumber").text($("#mobileNumber").val());

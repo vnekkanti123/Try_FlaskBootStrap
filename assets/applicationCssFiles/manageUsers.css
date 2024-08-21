@@ -232,5 +232,15 @@ h3 {
     color: green !important;
 }
 .paymentTable{
-    width: 50% !important;
+    width: 80% !important;
+}
+.paymentTable th{
+    font-size: x-large !important;
+}
+
+.paymentTable td{
+    font-size: large !important;
+}
+.paymentFormHeader{
+    margin-left: 7rem;
 }
