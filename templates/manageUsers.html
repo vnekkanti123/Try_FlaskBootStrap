@@ -26,8 +26,27 @@
       max-height: fit-content;
     }
 
+    .contentWidth{
+      width: 30%;
+    }
+
 .modal .btn {
     width: 20%;
+}
+.paymentTable tr {
+    border-bottom: 3px solid white !important;
+    background-color: white !important;
+  }
+  .paymentTable {
+  border-collapse: collapse !important;
+  }
+
+  .paymentTable tr:hover {
+      background-color: white !important;
+  }
+
+table.striped>tbody>tr:nth-child(odd) {
+    background-color: white !important;
 }
 </style>
 </head>
@@ -127,54 +146,94 @@
 
           <div id="manageUserDetailsModal" class="modal">
             <div class="modal-header">
-              <h3 style="padding: 1rem !important;">Manage User Details</h3>
+              <h3 style="padding: 1rem !important;" class="paymentFormHeader">Manage User Details</h3>
               <a href="#!" class="modal-close white-text"><i class="small material-icons">close</i></a>
             </div>
             <div class="modal-content">
-              <div class="row">
-                <div class="input-field col s12 m12 l6 xl6">
-                  <input id="mobileNumber" type="tel" class="validate" disabled>
-                  <label for="mobileNumber">Mobile Number</label>
+              <div class="paymentForm">
+                <div class="row">
+                  <div class="input-field col s12 m12 l6 xl6">
+                    <input id="mobileNumber" type="tel" class="validate" disabled>
+                    <label for="mobileNumber">Mobile Number</label>
+                  </div>
+                  <div class="input-field col s12 m12 l6 xl6">
+                    <input id="userName" type="text" class="validate" disabled>
+                    <label for="userName">UserName</label>
+                  </div>
                 </div>
-                <div class="input-field col s12 m12 l6 xl6">
-                  <input id="userName" type="text" class="validate" disabled>
-                  <label for="userName">UserName</label>
-                </div>
-              </div>
         
-              <div class="row">
-                <div class="input-field col s12 m12 l6 xl6">
-                  <input id="walletBalance" type="text" class="validate" disabled>
-                  <label for="walletBalance">Wallet Balance</label>
+                <div class="row">
+                  <div class="input-field col s12 m12 l6 xl6">
+                    <input id="walletBalance" type="text" class="validate" disabled>
+                    <label for="walletBalance">Wallet Balance</label>
+                  </div>
+                  <div class="input-field col s12 m12 l6 xl6">
+                    <input id="currentStatus" type="text" class="validate" disabled>
+                    <label for="currentStatus">Current Status</label>
+                  </div>
                 </div>
-                <div class="input-field col s12 m12 l6 xl6">
-                  <input id="currentStatus" type="text" class="validate" disabled>
-                  <label for="currentStatus">Current Status</label>
-                </div>
-              </div>
               
-              <div class="row">
-                <div class="input-field col s12 m6 l6 xl6">
-                  <input placeholder="Please enter recharge amount" id="rechargeAmount" type="number" class="validate">
-                  <label for="rechargeAmount">Recharge Amount</label>
+                <div class="row">
+                  <div class="input-field col s12 m6 l6 xl6">
+                    <input placeholder="Please enter recharge amount" id="rechargeAmount" type="number" class="validate">
+                    <label for="rechargeAmount" id="rechargeAmountLabel">Recharge Amount</label>
+                    <label id="amountInWords" class="statusPaymentStatus" style="display:none;"></label>
+                    
+                  </div>
+                  <div class="input-field col s12 m6 l6 xl6">
+                    <select id="transType">
+                      <option value="" disabled selected>Select Transaction Type</option>
+                      <option value="Credit">Credit</option>
+                      <option value="Debit">Debit</option>
+                    </select>
+                  </div>
                 </div>
-                <div class="input-field col s12 m6 l6 xl6">
-                  <select id="transType">
-                    <option value="" disabled selected>Select Transaction Type</option>
-                    <option value="Credit">Credit</option>
-                    <option value="Debit">Debit</option>
-                  </select>
-                </div>
-              </div>
         
-              <div class="row center-align">
-                  <div>
-                    <a href="#!" class="btn btn-primary rechargeBtn" id ="creditOrDebitBtn" onclick="creditOrDebitUserWallet()">Credit</a>
-                  </div>
-                  <div class="progress hide">
-                    <div class="indeterminate"></div>
-                  </div>
+                <div class="row center-align">
+                    <div>
+                      <a href="#!" class="btn btn-primary rechargeBtn" id ="creditOrDebitBtn" onclick="creditOrDebitUserWallet()">Credit</a>
+                    </div>
+                    <div class="progress hide">
+                      <div class="indeterminate"></div>
+                    </div>
+                </div>
               </div>
+              <div class="paymentFormResult hide">
+                <aside class="paymentFormResult hide">
+                  <table class="paymentTable striped">
+                    <tbody>
+                      <tr>
+                        <th>UserName</th>
+                        <td class="statusUserName "></td>
+                      </tr>
+                      <tr>
+                        <th>Mobile Number</th>
+                        <td class="statusMobileNumber "></td>
+                      </tr>
+                      <tr>
+                        <th>Amount</th>
+                        <td class="statusAmount "></td>
+                      </tr>
+                      <tr>
+                        <th>Payment Method</th>
+                        <td class="statusPaymentMethod "></td>
+                      </tr>
+                      <tr>
+                        <th>Payment Status</th>
+                        <td class="statusPaymentStatus "></td>
+                      </tr>
+                      <tr>
+                        <th>Date</th>
+                        <td class="date"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </aside>
+                
+                
+              </div>
+
+
             </div>
           </div>
     </div>
@@ -217,8 +276,59 @@
 
             // Automatically open sidenav
             //instance.sidenav('open');
+            $('#rechargeAmount').on('input', function() {
+                let amount = $(this).val();
+                if (amount) {
+                    $('#rechargeAmountLabel').hide();
+                    let amountInWords = test(amount);
+                    $('#amountInWords').text(amountInWords).show();
+                } else {
+                    $('#amountInWords').hide();
+                    $('#rechargeAmountLabel').show();
+                }
+            });
 
         });
+
+function test(n) {
+    if (n < 0)
+        return false;
+
+    // Arrays to hold words for single-digit, double-digit, and below-hundred numbers
+    single_digit = ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine'];
+    double_digit = ['Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen'];
+    below_hundred = ['Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
+
+    if (n === 0) return 'Zero';
+
+    // Recursive function to translate the number into words
+    function translate(n) {
+        let word = "";
+        if (n < 10) {
+            word = single_digit[n] + ' ';
+        } else if (n < 20) {
+            word = double_digit[n - 10] + ' ';
+        } else if (n < 100) {
+            let rem = translate(n % 10);
+            word = below_hundred[(n - n % 10) / 10 - 2] + ' ' + rem;
+        } else if (n < 1000) {
+            word = single_digit[Math.trunc(n / 100)] + ' Hundred ' + translate(n % 100);
+        } else if (n < 100000) {
+            word = translate(parseInt(n / 1000)).trim() + ' Thousand ' + translate(n % 1000);
+        } else if (n < 10000000) {
+            word = translate(parseInt(n / 100000)).trim() + ' Lakh ' + translate(n % 100000);
+        } else {
+            word = translate(parseInt(n / 10000000)).trim() + ' Crore ' + translate(n % 10000000);
+        }
+        return word;
+    }
+
+    // Get the result by translating the given number
+    let result = translate(n)+" "+"rupees";
+    return result.trim() + '.';
+}
+
+
         var isProcessing = false;
 
     </script>

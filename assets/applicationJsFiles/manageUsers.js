@@ -106,7 +106,6 @@ function createUserDetailsTable(data) {
             // Create dropdown as a string and set its selected value
             let statusDropDownHtml = `
       <select id="status-${username.replace(/[^a-zA-Z0-9]/g, "_")}" class="browser-default">
-        <option value="" disabled>Select status</option>
         <option value="True" ${kyc_status === "True" ? "selected" : ""}>Active</option>
         <option value="False" ${kyc_status === "False" ? "selected" : ""}>Inactive</option>
       </select>
@@ -176,9 +175,14 @@ function updatingUserStatus(userName) {
 
     $('#manageUserDetailsModal').modal({
         onOpenEnd: function() {
+            $("#amountInWords").hide();
+            $("#rechargeAmountLabel").show();
+            $(".paymentForm").removeClass("hide");
+            $(".paymentFormResult").addClass("hide");
             console.log('Modal opened. Previous status:', previousUserStatus);
         },
         onCloseEnd: function() {
+            $("#manageUserDetailsModal").removeClass("contentWidth");
             if (preWalletBalance != $("#walletBalance").val()) {
                 location.reload();
             }
@@ -256,7 +260,12 @@ function creditOrDebitUserWallet() {
         });
         $("#rechargeAmount").addClass("invalid");
         return;
-    } else if (transType === "Credit") {
+    } else if (!transType) {
+        M.toast({
+            html: 'Please select transaction type'
+        });
+        return;
+    } else {
         if (isProcessing) {
             M.toast({
                 html: 'Please wait your previous transaction is processing.'
@@ -283,12 +292,30 @@ function creditOrDebitUserWallet() {
             success: function(response) {
                 isProcessing = false;
                 $(".progress").addClass("hide");
-                M.toast({
-                    html: 'Recharged successfully.'
-                });
+                if (transType == "Credit") {
+                    M.toast({
+                        html: 'Amount credited successfully.'
+                    });
+                } else {
+                    M.toast({
+                        html: 'Amount debited successfully.'
+                    });
+                }
                // location.reload();
-               $("#manageUserDetailsModal").modal("close");
+               //$("#manageUserDetailsModal").modal("close");
                getUserDetails();
+               $(".paymentForm").addClass("hide");
+               $("#manageUserDetailsModal").addClass("contentWidth");
+               $(".paymentFormResult").removeClass("hide");
+               $(".statusUserName").text($("#userName").val());
+               $(".statusMobileNumber").text($("#mobileNumber").val());
+               $(".statusAmount").text(rechargeAmount);
+               $(".statusPaymentMethod").text(transType);
+               $(".statusPaymentStatus").text("Success");
+               $(".paymentFormHeader").text("Payment Details");
+               var today = new Date();
+               var dateTime  = today.toLocaleString();
+               $('.date').text(dateTime );
             },
             error: function(xhr, status, error) {
                 $(".progress").addClass("hide");
@@ -298,17 +325,6 @@ function creditOrDebitUserWallet() {
                 return;
             },
         });
-    } else {
-
-        if (!transType) {
-            M.toast({
-                html: 'Please select transaction type'
-            });
-        } else {
-            M.toast({
-                html: 'Debit action is under development.'
-            });
-        }
     }
 
 }
